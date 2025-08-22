@@ -15,7 +15,7 @@ function AnimatedHeroText() {
       draw: ["0 0", "0 1", "1 1"],
       // ease: "inOutQuad",
       easing: 'linear',
-      duration: 9000,
+      duration: 15000,
       endDelay: 2000,
       delay: stagger(50),
       loop: true,
