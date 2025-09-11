@@ -10,7 +10,7 @@ function BentoCards() {
   };
 
   return (
-    <div className="py-24 sm:py-32 bg-gradient-to-b from-white to-[#f5f3ff]">
+    <div className="py-24 sm:py-32 bg-transparent from-white to-[#f5f3ff]">
       <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
         {/* Section Intro */}
         <h2 className="text-center text-base/7 font-semibold text-[#7161ef]">
