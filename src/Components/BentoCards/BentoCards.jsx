@@ -3,13 +3,30 @@ import { motion } from "framer-motion";
 import responsiveAccrossDeevicesImg from "../../../public/responsive-2.jpg";
 
 function BentoCards() {
-  // Animation variants
-  const cardVariant = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
-  };
+ // Animation variants
+const containerVariant = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.25,
+      delayChildren: 0.1,
+    },
+  },
+};
 
-  return (
+const cardVariant = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+  
+
+ return (
     <div className="py-24 sm:py-32 bg-transparent from-white to-[#f5f3ff]">
       <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
         {/* Section Intro */}
@@ -24,13 +41,16 @@ function BentoCards() {
         </p>
 
         {/* Bento Grid */}
-        <div className="mt-10 grid gap-8 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
+        <motion.div
+          variants={containerVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-10 grid gap-8 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2"
+        >
           {/* 1st Card */}
           <motion.div
             variants={cardVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
             className="relative lg:row-span-2 hover:scale-[1.02] transition-transform duration-300"
           >
             <div className="absolute inset-px rounded-2xl bg-[#7161ef]/10 backdrop-blur-lg border border-[#7161ef]/30 shadow-2xl" />
@@ -59,10 +79,6 @@ function BentoCards() {
           {/* 2nd Card */}
           <motion.div
             variants={cardVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
             className="relative max-lg:row-start-1 hover:scale-[1.02] transition-transform duration-300"
           >
             <div className="absolute inset-px rounded-2xl bg-[#7161ef]/10 backdrop-blur-lg border border-[#7161ef]/30 shadow-2xl" />
@@ -89,10 +105,6 @@ function BentoCards() {
           {/* 3rd Card */}
           <motion.div
             variants={cardVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
             className="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2 hover:scale-[1.02] transition-transform duration-300"
           >
             <div className="absolute inset-px rounded-2xl bg-[#7161ef]/10 backdrop-blur-lg border border-[#7161ef]/30 shadow-2xl" />
@@ -119,10 +131,6 @@ function BentoCards() {
           {/* 4th Card */}
           <motion.div
             variants={cardVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
             className="relative lg:row-span-2 hover:scale-[1.02] transition-transform duration-300"
           >
             <div className="absolute inset-px rounded-2xl bg-[#7161ef]/10 backdrop-blur-lg border border-[#7161ef]/30 shadow-2xl" />
@@ -149,13 +157,13 @@ function BentoCards() {
                     </div>
                   </div>
                   <div className="px-6 pt-6 pb-14 text-sm text-gray-600">
-                    
+                    {/* Placeholder content */}
                   </div>
                 </div>
               </div>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
