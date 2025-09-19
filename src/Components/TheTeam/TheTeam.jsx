@@ -9,9 +9,10 @@ function TheTeam() {
   return (
     <>
       <div>
-        <h3 className="text-7xl font-bold text-center my-20 text-indigo-800">
-          <span className="text-indigo-400">Meet</span> The Team
+        <h3 style={{margin: 0}} className="m-0 text-7xl font-bold text-center my-20 text-indigo-800">
+          <span className="text-indigo-400">The Team </span><br></br>That Powers Us
         </h3>
+        <p style={{margin: 0}} className="text-center text-indigo-500">Skilled minds and dedicated hearts behind every success.</p>
       </div>
       <div className="w-full h-screen flex justify-center gap-[3%] items-center bg-[#1c1c1c">
         <TeamCards

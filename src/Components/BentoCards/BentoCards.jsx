@@ -33,8 +33,8 @@ const cardVariant = {
         <h2 className="text-center text-base/7 font-semibold text-[#7161ef]">
           💡 Built by teamwork
         </h2>
-        <p className="mx-auto mt-2 max-w-2xl text-center text-4xl font-semibold tracking-tight text-balance text-[#1a1a1a] sm:text-5xl">
-          Skills that power <span className="text-[#7161ef]">great products</span>
+        <p className="mx-auto mt-2 max-w-2xl text-center text-4xl font-semibold tracking-tight text-balance text-indigo-800 sm:text-5xl">
+          Skills that power <span className="text-indigo-400">great products</span>
         </p>
         <p className="mx-auto mt-4 max-w-xl text-center text-gray-600 text-base">
           Every card below highlights a principle we live by when building modern, scalable, and user-friendly digital products.
