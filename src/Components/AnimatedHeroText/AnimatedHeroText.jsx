@@ -23,7 +23,7 @@ function AnimatedHeroText() {
   }, []);
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center w-full overflow-hidden px-2 sm:px-4 md:px-6 lg:px-0">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -33,6 +33,7 @@ function AnimatedHeroText() {
         height="300"
         preserveAspectRatio="xMidYMid meet"
         version="1.2"
+        className="w-full max-w-[90vw] sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[1200px] h-auto"
       >
         <defs />
         <g id="ce78ff4498" stroke="#7161ef" strokeWidth="2" fill="none">

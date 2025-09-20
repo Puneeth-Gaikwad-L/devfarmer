@@ -19,14 +19,14 @@ function ContactUs() {
             reply_to: "contact@devfarmer.xyz",
         };
         console.log(emailTemplate);
-        
+
         setLoading(true);
         emailjs.send(emailJsConfig.serviceId, emailJsConfig.templateId, emailTemplate, emailJsConfig.publicKey)
             .then((response) => {
                 console.log('SUCCESS!', response.status, response.text);
                 alert("Thank you for reaching out. We'll get back to you soon!");
             })
-            .then(()=>{
+            .then(() => {
                 setCustomerName("");
                 setCustomerEmail("");
                 setCompanyName("");
@@ -38,8 +38,8 @@ function ContactUs() {
                 setLoading(false);
                 alert("Oops! Something went wrong. Please try again later.");
             });
-            
-        
+
+
     };
 
     const toggleChip = (item) => {
@@ -53,15 +53,15 @@ function ContactUs() {
     return (
         <section className="max-w-6xl mx-auto px-6 py-12">
             {/* Heading */}
-            <h3 className="text-7xl font-bold leading-right text-center w-[60%] m-auto text-purple-700">
-                <span className="text-purple-400">Say Hi!</span> and tell us about your
-                idea
+            <h3 className="text-3xl sm:text-4xl md:text-7xl font-bold text-center w-[90%] sm:w-[70%] md:w-[60%] m-auto text-purple-700 leading-snug sm:leading-snug md:leading-tight">
+                <span className="text-purple-400">Say Hi!</span> and tell us about your idea
             </h3>
 
             {/* Subtext */}
-            <p className="mt-3 text-purple-500 text-center">
+            <p className="mt-2 sm:mt-3 text-sm sm:text-base md:text-base text-purple-500 text-center w-[90%] sm:w-[70%] md:w-auto m-auto">
                 Have a project in mind? We'd love to hear from you!
             </p>
+
 
             {/* Form */}
             <form className="mt-8 space-y-6" onSubmit={onFormSubmit}>
