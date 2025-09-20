@@ -43,16 +43,16 @@ jobs:
 
       - name: Verify build output
         run: |
-          if [ ! -d "build" ]; then
-            echo "Build directory not found!"
+          if [ ! -d "dist" ]; then
+            echo "Dist directory not found!"
             exit 1
           fi
-          if [ ! -f "build/index.html" ]; then
-            echo "index.html not found in build directory!"
+          if [ ! -f "dist/index.html" ]; then
+            echo "index.html not found in dist directory!"
             exit 1
           fi
           echo "Build verification successful!"
-          ls -la build/
+          ls -la dist/
 
       - name: Add SSH key and known hosts
         run: |
@@ -65,7 +65,7 @@ jobs:
         uses: burnett01/rsync-deployments@5.2
         with:
           switches: -avzr --delete
-          path: build/
+          path: dist/
           remote_path: /home/u308657034/public_html/
           remote_host: 82.180.142.62
           remote_port: 65002
