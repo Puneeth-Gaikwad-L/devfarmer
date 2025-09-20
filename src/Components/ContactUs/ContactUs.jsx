@@ -16,7 +16,7 @@ function ContactUs() {
             from_name: customerName,
             time: getFormattedDateTime(),
             message: `${customerName} from ${companyName} is interested in ${selectedChips}. Please connect with the client on ${customerEmail}`,
-            reply_to: "sk9008899542@gmail.com",
+            reply_to: "contact@devfarmer.xyz",
         };
         console.log(emailTemplate);
         
@@ -53,13 +53,13 @@ function ContactUs() {
     return (
         <section className="max-w-6xl mx-auto px-6 py-12">
             {/* Heading */}
-            <h3 className="text-7xl font-bold leading-right text-center w-[60%] m-auto text-indigo-700">
-                <span className="text-indigo-400">Say Hi!</span> and tell us about your
+            <h3 className="text-7xl font-bold leading-right text-center w-[60%] m-auto text-purple-700">
+                <span className="text-purple-400">Say Hi!</span> and tell us about your
                 idea
             </h3>
 
             {/* Subtext */}
-            <p className="mt-3 text-indigo-500 text-center">
+            <p className="mt-3 text-purple-500 text-center">
                 Have a project in mind? We'd love to hear from you!
             </p>
 
@@ -148,8 +148,8 @@ function ContactUs() {
                                 type="button"
                                 className={`px-4 py-2 border rounded-full text-sm transition 
                                             ${selectedChips.includes(item)
-                                        ? "bg-indigo-500 text-white border-indigo-500"
-                                        : "text-gray-700 border-gray-300 hover:bg-indigo-500 hover:text-white"
+                                        ? "bg-purple-500 text-white border-purple-500"
+                                        : "text-gray-700 border-gray-300 hover:bg-purple-500 hover:text-white"
                                     }`}
                             >
                                 {item}
@@ -159,7 +159,7 @@ function ContactUs() {
                 </div>
                 <button
                     type="submit"
-                    className="mt-6 px-6 py-3 bg-indigo-600 text-white font-medium rounded-lg shadow hover:bg-indigo-700 transition"
+                    className="mt-6 px-6 py-3 bg-purple-600 text-white font-medium rounded-lg shadow hover:bg-purple-700 transition"
                 >
                     {loading ? "Sending..." : "Submit"}
                 </button>
