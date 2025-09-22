@@ -42,8 +42,7 @@ function Navbar() {
       </div>
 
       {/* Mobile/Tablet Hamburger Menu Button */}
-      <div className={`fixed top-0 left-0 w-full h-full bg-white/20 backdrop-blur-xl border-r border-white/20 z-40 transform transition-transform duration-300 ease-in-out ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:hidden`}>
+      <div className="lg:hidden">
         <button
           onClick={toggleMenu}
           className="flex flex-col justify-center items-center w-8 h-8 space-y-1 focus:outline-none"
