@@ -3,7 +3,9 @@ import Brand from "../Brand/Brand";
 
 function Navbar() {
   return (
-    <nav className="m-auto flex justify-between items-center p-4 text-black w-full bg-white shadow-xl inset-shadow-sm sticky top-0 z-50">
+    <nav className="m-auto flex justify-between items-center p-4 text-black w-full 
+  bg-white/20 backdrop-blur-lg border-b border-white/30 
+  shadow-lg sticky top-0 z-50">
       <Brand />
       <div>
         <ul className="flex space-x-10 mx-10 justify-center items-center">
@@ -27,6 +29,7 @@ function Navbar() {
         </ul>
       </div>
     </nav>
+
   );
 }
 
