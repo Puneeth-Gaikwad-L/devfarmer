@@ -83,7 +83,7 @@ function Navbar() {
           </div>
 
           {/* Navigation Links */}
-          <div className="flex-1 flex flex-col justify-center items-center space-y-8">
+          <div className="flex-1 flex flex-col justify-center items-center space-y-8 bg-[#ffffffec] backdrop-blur-xl border border-white/20 shadow-lg p-20 rounded-2xl">
             <ul className="flex flex-col space-y-8 text-center">
               <li>
                 <a
