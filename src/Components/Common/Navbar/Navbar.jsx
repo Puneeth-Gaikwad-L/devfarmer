@@ -13,9 +13,11 @@ function Navbar() {
   };
 
   return (
-    <nav className="m-auto flex justify-between items-center p-4 text-black w-full bg-white shadow-xl inset-shadow-sm sticky top-0 z-50">
+    <nav className="m-auto flex justify-between items-center p-4 text-black w-full 
+  bg-white/20 backdrop-blur-lg border-b border-white/30 
+  shadow-lg sticky top-0 z-50">
       <Brand />
-      
+
       {/* Desktop Navigation - Hidden on mobile and tablet */}
       <div className="hidden lg:block">
         <ul className="flex space-x-10 mx-10 justify-center items-center">
@@ -47,28 +49,24 @@ function Navbar() {
           aria-label="Toggle menu"
         >
           <span
-            className={`block w-6 h-0.5 bg-black transition-all duration-300 ${
-              isMenuOpen ? "rotate-45 translate-y-1.5" : ""
-            }`}
+            className={`block w-6 h-0.5 bg-black transition-all duration-300 ${isMenuOpen ? "rotate-45 translate-y-1.5" : ""
+              }`}
           ></span>
           <span
-            className={`block w-6 h-0.5 bg-black transition-all duration-300 ${
-              isMenuOpen ? "opacity-0" : ""
-            }`}
+            className={`block w-6 h-0.5 bg-black transition-all duration-300 ${isMenuOpen ? "opacity-0" : ""
+              }`}
           ></span>
           <span
-            className={`block w-6 h-0.5 bg-black transition-all duration-300 ${
-              isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
-            }`}
+            className={`block w-6 h-0.5 bg-black transition-all duration-300 ${isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
+              }`}
           ></span>
         </button>
       </div>
 
       {/* Mobile/Tablet Navigation Menu */}
       <div
-        className={`fixed top-0 left-0 w-full h-full bg-white z-40 transform transition-transform duration-300 ease-in-out ${
-          isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:hidden`}
+        className={`fixed top-0 left-0 w-full h-full bg-white z-40 transform transition-transform duration-300 ease-in-out ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
+          } lg:hidden`}
       >
         <div className="flex flex-col h-full">
           {/* Header with close button */}
@@ -85,7 +83,7 @@ function Navbar() {
           </div>
 
           {/* Navigation Links */}
-          <div className="flex-1 flex flex-col justify-center items-center space-y-8">
+          <div className="flex-1 flex flex-col justify-center items-center space-y-8 bg-[#ffffffec] backdrop-blur-xl border border-white/20 shadow-lg p-20 rounded-2xl">
             <ul className="flex flex-col space-y-8 text-center">
               <li>
                 <a
