@@ -6,9 +6,9 @@ function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const navLinks = [
-    { name: "Home", href: "#home" },
+    { name: "Home", href: "#" },
     { name: "About", href: "#skills" },
-    { name: "Projects", href: "#the-team" },
+    { name: "Projects", href: "#circle-section" },
     { name: "Blogs", href: "#" },
   ];
 
