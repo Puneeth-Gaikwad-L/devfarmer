@@ -46,12 +46,12 @@ function TheTeam() {
   return (
     <>
       <div id="the-team" className="section-padding px-4 sm:px-0 team-bg">
-        <h3 className="m-0 text-4xl sm:text-5xl md:text-7xl font-bold text-center my-10 sm:my-20 text-purple-800">
+        <h3 className="m-0 text-4xl sm:text-5xl md:text-7xl font-bold text-center  text-purple-800">
           <span className="text-purple-400">The Team </span>
           <br />
           That Powers Us
         </h3>
-        <p className="text-center text-sm sm:text-base md:text-purple-500">
+        <p className="m-0 text-center text-sm sm:text-base md:text-gray-500">
           Skilled minds and dedicated hearts behind every success.
         </p>
 

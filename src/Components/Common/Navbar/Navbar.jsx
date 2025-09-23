@@ -118,7 +118,7 @@ function Navbar() {
             variants={bulbVariants}>
             <div className="flex items-center gap-2 bg-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md relative z-10 animate-pulse">
               <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-              Looking for your connection
+              Looking forward to connect!
             </div>
           </motion.div>
         )}

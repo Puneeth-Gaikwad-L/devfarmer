@@ -137,14 +137,14 @@ export default function RotatingCircle() {
 
         {/* Center Text */}
         <div className="text-center max-w-xl z-10 self-end mb-10">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Ideas in Action
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-purple-700">
+            <span className="text-purple-400">Ideas</span> in Action
           </h1>
           <p className="text-gray-500 mb-6">
             Transform your ideas into breathtaking visuals with cutting-edge
             technology.
           </p>
-          <button className="bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg hover:scale-105 transition">
+          <button className="bg-purple-500 text-white px-6 py-3 rounded-full shadow-lg hover:scale-105 transition">
             Get In Touch →
           </button>
         </div>
