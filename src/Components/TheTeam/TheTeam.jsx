@@ -10,7 +10,6 @@ import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 
 function TheTeam() {
-
   const teamMembers = [
     {
       name: "Sunil Kumar",
@@ -39,37 +38,37 @@ function TheTeam() {
       img: Team3,
       bgColor: "bg-[#D58936]",
       imgBg: "bg-[#A44200]",
-    }
+    },
   ];
 
   return (
     <>
-      <div className="px-4 sm:px-0">
+      <div id="the-team" className="section-padding px-4 sm:px-0 team-bg">
         <h3
           style={{ margin: 0 }}
-          className="m-0 text-4xl sm:text-5xl md:text-7xl font-bold text-center my-10 sm:my-20 text-purple-800"
-        >
-          <span className="text-purple-400">The Team </span><br />That Powers Us
+          className="m-0 text-4xl sm:text-5xl md:text-7xl font-bold text-center my-10 sm:my-20 text-purple-800">
+          <span className="text-purple-400">The Team </span>
+          <br />
+          That Powers Us
         </h3>
         <p
           style={{ margin: 0 }}
-          className="text-center text-sm sm:text-base md:text-purple-500"
-        >
+          className="text-center text-sm sm:text-base md:text-purple-500">
           Skilled minds and dedicated hearts behind every success.
         </p>
-      </div>
 
-      <div className="hidden md:flex w-full h-screen justify-center gap-[3%] items-center">
-        {teamMembers.map((member, index) => (
-          <TeamCards
-            key={index}
-            bgColor={member.bgColor}
-            imgBg={member.imgBg}
-            name={member.name}
-            position={member.position}
-            img={member.img}
-          />
-        ))}
+        <div className="hidden md:flex w-full h-screen justify-center gap-[3%] items-center">
+          {teamMembers.map((member, index) => (
+            <TeamCards
+              key={index}
+              bgColor={member.bgColor}
+              imgBg={member.imgBg}
+              name={member.name}
+              position={member.position}
+              img={member.img}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Mobile view (Swiper carousel) */}
@@ -80,8 +79,7 @@ function TheTeam() {
           spaceBetween={20}
           slidesPerView={1}
           pagination={{ clickable: true }}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-        >
+          autoplay={{ delay: 3000, disableOnInteraction: false }}>
           {teamMembers.map((member, index) => (
             <SwiperSlide key={index} className="flex justify-center h-full">
               <div className="flex justify-center h-full">

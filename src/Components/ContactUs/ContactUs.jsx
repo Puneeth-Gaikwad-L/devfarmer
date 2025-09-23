@@ -51,7 +51,7 @@ function ContactUs() {
     };
 
     return (
-        <section className="max-w-6xl mx-auto px-6 py-12">
+        <section id="contact-us" className="max-w-6xl mx-auto px-6 py-12">
             {/* Heading */}
             <h3 className="text-3xl sm:text-4xl md:text-7xl font-bold text-center w-[90%] sm:w-[70%] md:w-[60%] m-auto text-purple-700 leading-snug sm:leading-snug md:leading-tight">
                 <span className="text-purple-400">Say Hi!</span> and tell us about your idea

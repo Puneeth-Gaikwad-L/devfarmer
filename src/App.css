@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+}
+.section-padding {
+  padding: 2rem 0px 2rem 0px !important;
+}
+
+.team-bg {
+  background: linear-gradient(to bottom, #f9fafb, #e3f2fd 70%, #bbdefb);
+}
