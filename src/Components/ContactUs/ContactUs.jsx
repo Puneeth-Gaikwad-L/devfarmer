@@ -182,7 +182,7 @@ function ContactUs() {
                 className={`px-4 py-2 border rounded-full text-sm transition 
                   ${
                     selectedChips.includes(item)
-                      ? "bg-purple-500 text-white border-purple-500"
+                      ? "bg-purple-500 text-white border-purple-500 border-2"
                       : "text-gray-700 border-gray-300 hover:bg-purple-500 hover:text-white"
                   }`}>
                 {item}
