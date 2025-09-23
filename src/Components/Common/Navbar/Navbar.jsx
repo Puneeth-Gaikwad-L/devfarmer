@@ -47,7 +47,7 @@ function Navbar() {
   };
 
   return (
-    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-6xl font-sans">
+    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-5000 w-[90%] max-w-6xl font-sans">
       <motion.nav
         className={`flex justify-between items-center px-6 py-3 rounded-3xl 
           backdrop-blur-2xl border border-white/40 shadow-lg shadow-black/20 
