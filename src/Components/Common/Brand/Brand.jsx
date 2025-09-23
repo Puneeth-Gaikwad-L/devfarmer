@@ -2,7 +2,9 @@ import React from 'react'
 
 function Brand() {
   return (
-    <div></div>
+    <div>
+      <img src="/brand.png" alt="brand" width="150"/>
+    </div>
   )
 }
 

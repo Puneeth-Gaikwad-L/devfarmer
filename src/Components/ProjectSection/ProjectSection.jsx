@@ -144,8 +144,8 @@ export default function RotatingCircle() {
             Transform your ideas into breathtaking visuals with cutting-edge
             technology.
           </p>
-          <button className="bg-purple-500 text-white px-6 py-3 rounded-full shadow-lg hover:scale-105 transition">
-            Get In Touch →
+          <button className="bg-purple-500 text-white px-6 py-3 rounded-full shadow-lg hover:scale-105 transition" >
+            <a href="#contact-us" className="no-underline text-white">Get in Touch</a>
           </button>
         </div>
 
