@@ -6,7 +6,7 @@ const StarBackground = ({ children }) => {
     <div className="starry-container">
       <div className="stars"></div>
       {/* Multiple shooting stars */}
-      {Array.from({ length: 10 }).map((_, index) => (
+      {Array.from({ length: 15 }).map((_, index) => (
         <div key={index} className="shooting-star"></div>
       ))}
       {/* Content goes on top */}

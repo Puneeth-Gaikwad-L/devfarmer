@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TeamCards from "../TeamCards/TeamCards";
 import Team3 from "/team-3.png";
 import Team4 from "/team-4.png";
@@ -10,6 +10,8 @@ import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 
 function TheTeam() {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   const teamMembers = [
     {
       name: "Sunil Kumar",
@@ -44,20 +46,17 @@ function TheTeam() {
   return (
     <>
       <div id="the-team" className="section-padding px-4 sm:px-0 team-bg">
-        <h3
-          style={{ margin: 0 }}
-          className="m-0 text-4xl sm:text-5xl md:text-7xl font-bold text-center my-10 sm:my-20 text-purple-800">
+        <h3 className="m-0 text-4xl sm:text-5xl md:text-7xl font-bold text-center my-10 sm:my-20 text-purple-800">
           <span className="text-purple-400">The Team </span>
           <br />
           That Powers Us
         </h3>
-        <p
-          style={{ margin: 0 }}
-          className="text-center text-sm sm:text-base md:text-purple-500">
+        <p className="text-center text-sm sm:text-base md:text-purple-500">
           Skilled minds and dedicated hearts behind every success.
         </p>
 
-        <div className="hidden md:flex w-full h-screen justify-center gap-[3%] items-center">
+        {/* Desktop view */}
+        <div className="relative hidden md:flex w-full h-screen justify-center gap-[3%] items-center">
           {teamMembers.map((member, index) => (
             <TeamCards
               key={index}
@@ -66,28 +65,31 @@ function TheTeam() {
               name={member.name}
               position={member.position}
               img={member.img}
+              isHovered={hoveredIndex === index}
+              onHover={() => setHoveredIndex(index)}
+              onLeave={() => setHoveredIndex(null)}
             />
           ))}
         </div>
-      </div>
 
-      {/* Mobile view (Swiper carousel) */}
-      <div className="block md:hidden w-full py-10 w-full h-[80dvh]">
-        <Swiper
-          className="h-full"
-          modules={[Pagination, Autoplay]}
-          spaceBetween={20}
-          slidesPerView={1}
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}>
-          {teamMembers.map((member, index) => (
-            <SwiperSlide key={index} className="flex justify-center h-full">
-              <div className="flex justify-center h-full">
-                <TeamCards {...member} />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {/* Mobile view (Swiper carousel) */}
+        <div className="block md:hidden w-full py-10 h-[80dvh]">
+          <Swiper
+            className="h-full"
+            modules={[Pagination, Autoplay]}
+            spaceBetween={20}
+            slidesPerView={1}
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}>
+            {teamMembers.map((member, index) => (
+              <SwiperSlide key={index} className="flex justify-center h-full">
+                <div className="flex justify-center h-full">
+                  <TeamCards {...member} />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </>
   );
