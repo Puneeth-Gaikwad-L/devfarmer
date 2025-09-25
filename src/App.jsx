@@ -15,7 +15,9 @@ function App() {
 
     const moveCursor = (e) => {
       // Direct update for instant following (no lag)
-      cursor.style.transform = `translate3d(${e.clientX + offsetX}px, ${e.clientY + offsetY}px, 0)`;
+      cursor.style.transform = `translate3d(${e.clientX + offsetX}px, ${
+        e.clientY + offsetY
+      }px, 0)`;
     };
 
     document.addEventListener("mousemove", moveCursor);
@@ -32,9 +34,8 @@ function App() {
         className="pointer-events-none fixed top-0 left-0 w-4 h-4 bg-indigo-800 rounded-full z-50 hidden md:block will-change-transform"
         style={{
           // Remove CSS transitions and use transform3d for better performance
-          transform: 'translate3d(0, 0, 0)',
-        }}
-      ></div>
+          transform: "translate3d(0, 0, 0)",
+        }}></div>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />

@@ -12,3 +12,8 @@
 /* .team-bg {
   background: linear-gradient(to bottom, #f9fafb, #e3f2fd 70%, #bbdefb);
 } */
+ @media (min-width: 630px) and (max-width: 1020px) {
+  .custom-width {
+    max-width: 100%;
+  }
+}
