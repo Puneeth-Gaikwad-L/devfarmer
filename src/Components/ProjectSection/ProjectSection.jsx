@@ -144,9 +144,15 @@ export default function RotatingCircle() {
             Transform your ideas into breathtaking visuals with cutting-edge
             technology.
           </p>
-          <button className="bg-purple-500 text-white px-6 py-3 rounded-full shadow-lg hover:scale-105 transition" >
-            <a href="#contact-us" className="no-underline text-white">Get in Touch</a>
-          </button>
+          <a href="#contact-us" className="no-underline text-white cursor-pointer">
+            <button className="bg-purple-500 text-white px-6 py-3 rounded-full shadow-lg hover:scale-105 transition cursor-pointer" >
+              Get in Touch
+              <span className="relative inline-flex h-3 w-3 ml-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              </span>
+            </button>
+          </a>
         </div>
 
         {/* Mask bottom half */}
