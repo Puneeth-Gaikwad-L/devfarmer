@@ -25,3 +25,41 @@ export const projects = [
   { src: "/img7.jpg", link: "https://example.com/gallery/7" },
   { src: "/img8.jpg", link: "https://example.com/gallery/8" },
 ];
+
+export const testimonials = [
+  {
+    name: "Alice Johnson",
+    role: "CEO, Tech Innovators",
+    feedback:
+      "The team transformed our vision into a stunning reality. Their expertise in 3D modeling and AR technology is unparalleled.",
+    avatar: "/avatars/alice.jpg",
+  },
+  {
+    name: "Alice Johnson",
+    role: "CEO, Tech Innovators",
+    feedback:
+      "The team transformed our vision into a stunning reality. Their expertise in 3D modeling and AR technology is unparalleled.",
+    avatar: "/avatars/alice.jpg",
+  },
+  {
+    name: "Alice Johnson",
+    role: "CEO, Tech Innovators",
+    feedback:
+      "The team transformed our vision into a stunning reality. Their expertise in 3D modeling and AR technology is unparalleled.",
+    avatar: "/avatars/alice.jpg",
+  },
+   {
+    name: "Alice Johnson",
+    role: "CEO, Tech Innovators",
+    feedback:
+      "The team transformed our vision into a stunning reality. Their expertise in 3D modeling and AR technology is unparalleled.",
+    avatar: "/avatars/alice.jpg",
+  },
+   {
+    name: "Alice Johnson",
+    role: "CEO, Tech Innovators",
+    feedback:
+      "The team transformed our vision into a stunning reality. Their expertise in 3D modeling and AR technology is unparalleled.",
+    avatar: "/avatars/alice.jpg",
+  }
+];
