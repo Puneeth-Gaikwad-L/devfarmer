@@ -12,5 +12,16 @@ export const getFormattedDateTime = () => {
 export const emailJsConfig = {
   serviceId: "service_lkzu9mc",
   templateId: "template_nd9gb8p",
-  publicKey: "Qa8uNHT1SJ1TO403N"
+  publicKey: "Qa8uNHT1SJ1TO403N",
 };
+
+export const projects = [
+  { src: "/img1.jpg", link: "https://example.com/gallery/1" },
+  { src: "/img2.jpg", link: "https://example.com/gallery/2" },
+  { src: "/img3.jpg", link: "https://example.com/gallery/3" },
+  { src: "/img4.jpg", link: "https://example.com/gallery/4" },
+  { src: "/img5.jpg", link: "https://example.com/gallery/5" },
+  { src: "/img6.jpg", link: "https://example.com/gallery/6" },
+  { src: "/img7.jpg", link: "https://example.com/gallery/7" },
+  { src: "/img8.jpg", link: "https://example.com/gallery/8" },
+];

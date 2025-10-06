@@ -17,3 +17,8 @@
     max-width: 100%;
   }
 }
+
+img {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
