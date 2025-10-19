@@ -4,6 +4,7 @@ import Navbar from "../../Components/Common/Navbar/Navbar";
 import ContactUs from "../../Components/ContactUs/ContactUs";
 import Hero from "../../Components/Hero/Hero";
 import RotatingCircle from "../../Components/ProjectSection/ProjectSection";
+import Testimonials from "../../Components/Testimonials/Testimonials";
 import TheTeam from "../../Components/TheTeam/TheTeam";
 
 function Home() {
@@ -14,6 +15,7 @@ function Home() {
       <BentoCards />
       <RotatingCircle />
       <TheTeam />
+      <Testimonials />
       <ContactUs />
     </>
   );
