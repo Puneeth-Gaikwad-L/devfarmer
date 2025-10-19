@@ -26,40 +26,64 @@ export const projects = [
   { src: "/img8.jpg", link: "https://example.com/gallery/8" },
 ];
 
+export const teamMembers = [
+  {
+    name: "Santhosh",
+    position: "Cheif Marketing Officer",
+    img: "/team-6.png",
+    bgColor: "bg-[#E574BC]",
+    imgBg: "bg-[#C52184]",
+  },
+  {
+    name: "Mani Poorna",
+    position: "Tehnical Solutions Architect",
+    img: "/team-4.png",
+    bgColor: "bg-[#A882DD]",
+    imgBg: "bg-[#49416D]",
+  },
+  {
+    name: "Puneeth Gaikwad L",
+    position: "Tehnical Solutions Architect",
+    img: "/team-5.png",
+    bgColor: "bg-[#7D84B2]",
+    imgBg: "bg-[#14213D]",
+  },
+  {
+    name: "Prem Darshan",
+    position: "Cheif Executive Officer",
+    img: "/team-3.png",
+    bgColor: "bg-[#D58936]",
+    imgBg: "bg-[#A44200]",
+  },
+];
+
 export const testimonials = [
   {
-    name: "Alice Johnson",
-    role: "CEO, Tech Innovators",
+    name: "Ravi Teja",
+    role: "Senior UI/UX Designer",
     feedback:
-      "The team transformed our vision into a stunning reality. Their expertise in 3D modeling and AR technology is unparalleled.",
-    avatar: "/avatars/alice.jpg",
+      "working with the team has been amazing. They’d look at a design and instantly know how to build it out without compromising the look or the user experience. Super easy to work with.",
+    avatar: "/team-6.png",
   },
   {
-    name: "Alice Johnson",
-    role: "CEO, Tech Innovators",
+    name: "Patil Associates",
+    role: "Cubicksmarks",
     feedback:
-      "The team transformed our vision into a stunning reality. Their expertise in 3D modeling and AR technology is unparalleled.",
-    avatar: "/avatars/alice.jpg",
+      "They took the time to understand our goals and delivered a design that resonated perfectly with our audience.",
+    avatar: "/team-6.png",
   },
   {
-    name: "Alice Johnson",
-    role: "CEO, Tech Innovators",
+    name: "Sreekant",
+    role: "Lead Motion Graphics Designer",
     feedback:
-      "The team transformed our vision into a stunning reality. Their expertise in 3D modeling and AR technology is unparalleled.",
-    avatar: "/avatars/alice.jpg",
+      "Working with the team was effortless. We’d share complex motion ideas, and they’d implement them smoothly on the web while making sure everything worked seamlessly across devices. It made the whole project feel alive.",
+    avatar: "/team-6.png",
   },
-   {
-    name: "Alice Johnson",
-    role: "CEO, Tech Innovators",
+  {
+    name: "Shivani",
+    role: "Tatva Bussiness Owner",
     feedback:
-      "The team transformed our vision into a stunning reality. Their expertise in 3D modeling and AR technology is unparalleled.",
-    avatar: "/avatars/alice.jpg",
+      "The team did a fantastic job bringing our vision to life. The website looks clean, professional, and exactly how we imagined it.",
+    avatar: "/team-6.png",
   },
-   {
-    name: "Alice Johnson",
-    role: "CEO, Tech Innovators",
-    feedback:
-      "The team transformed our vision into a stunning reality. Their expertise in 3D modeling and AR technology is unparalleled.",
-    avatar: "/avatars/alice.jpg",
-  }
 ];
