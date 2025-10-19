@@ -30,7 +30,7 @@ export const teamMembers = [
   {
     name: "Santhosh",
     position: "Cheif Marketing Officer",
-    img: "/team-6.png",
+    img: "/profile.jpg",
     bgColor: "bg-[#E574BC]",
     imgBg: "bg-[#C52184]",
   },
@@ -63,27 +63,27 @@ export const testimonials = [
     role: "Senior UI/UX Designer",
     feedback:
       "working with the team has been amazing. They’d look at a design and instantly know how to build it out without compromising the look or the user experience. Super easy to work with.",
-    avatar: "/team-6.png",
+    avatar: "/profile.jpg",
   },
   {
     name: "Patil Associates",
     role: "Cubicksmarks",
     feedback:
       "They took the time to understand our goals and delivered a design that resonated perfectly with our audience.",
-    avatar: "/team-6.png",
+    avatar: "/profile.jpg",
   },
   {
     name: "Sreekant",
     role: "Lead Motion Graphics Designer",
     feedback:
       "Working with the team was effortless. We’d share complex motion ideas, and they’d implement them smoothly on the web while making sure everything worked seamlessly across devices. It made the whole project feel alive.",
-    avatar: "/team-6.png",
+    avatar: "/profile.jpg",
   },
   {
     name: "Shivani",
     role: "Tatva Bussiness Owner",
     feedback:
       "The team did a fantastic job bringing our vision to life. The website looks clean, professional, and exactly how we imagined it.",
-    avatar: "/team-6.png",
+    avatar: "/profile.jpg",
   },
 ];
