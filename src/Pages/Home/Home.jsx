@@ -6,6 +6,7 @@ import Hero from "../../Components/Hero/Hero";
 import RotatingCircle from "../../Components/ProjectSection/ProjectSection";
 import Testimonials from "../../Components/Testimonials/Testimonials";
 import TheTeam from "../../Components/TheTeam/TheTeam";
+import ProcessSteps from "../../Components/ProcessSteps/ProcessSteps";
 
 function Home() {
   return (
@@ -15,6 +16,7 @@ function Home() {
       <BentoCards />
       <RotatingCircle />
       <TheTeam />
+      <ProcessSteps />
       <Testimonials />
       <ContactUs />
     </>

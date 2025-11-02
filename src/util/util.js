@@ -16,8 +16,8 @@ export const emailJsConfig = {
 };
 
 export const projects = [
-  { src: "/img1.jpg", link: "https://example.com/gallery/1" },
-  { src: "/img2.jpg", link: "https://example.com/gallery/2" },
+  { src: "/project1.png", link: "https://www.cubicksmarks.com/" },
+  { src: "/project2.png", link: "https://tatvacreators.com/" },
   { src: "/img3.jpg", link: "https://example.com/gallery/3" },
   { src: "/img4.jpg", link: "https://example.com/gallery/4" },
   { src: "/img5.jpg", link: "https://example.com/gallery/5" },
