@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { emailJsConfig, getFormattedDateTime } from "../../util/util";
 
@@ -9,13 +9,17 @@ function ContactUs() {
   const [companyName, setCompanyName] = useState("");
   const [selectedChips, setSelectedChips] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [otherMessage, setOtherMessage] = useState("");
 
   const onFormSubmit = (e) => {
     e.preventDefault();
+    const formattedChips = selectedChips.join(", ");
     const emailTemplate = {
       from_name: customerName,
       time: getFormattedDateTime(),
-      message: `${customerName} from ${companyName} is interested in ${selectedChips}. Please connect with the client on ${customerEmail}`,
+      company_name: companyName,
+      interest: formattedChips,
+      message: `${customerName} from ${companyName} is interested in ${formattedChips}. ${otherMessage ? `\n User's note: "${otherMessage}"` : ""} \n Please connect with the client on ${customerEmail}`,
       reply_to: "contact@devfarmer.xyz",
     };
 
@@ -171,6 +175,7 @@ function ContactUs() {
               "Illustration",
               "Logo Design",
               "Graphic Design",
+              "others"
             ].map((item) => (
               <motion.button
                 key={item}
@@ -189,6 +194,26 @@ function ContactUs() {
               </motion.button>
             ))}
           </div>
+          <AnimatePresence>
+            {selectedChips.includes("others") &&
+              <motion.div
+                key="others-textarea"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.4 }}
+                className="mt-5">
+                <label htmlFor="others" className="block text-sm font-medium text-gray-700 mb-2">Tell us more about your idea ✨</label>
+                <textarea
+                  id="others"
+                  rows={4}
+                  value={otherMessage}
+                  onChange={(e) => setOtherMessage(e.target.value)}
+                  placeholder="Write your idea or requirement here..."
+                  className="w-full rounded-lg border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-300 p-3 text-sm resize-none"
+                />
+              </motion.div>}
+          </AnimatePresence>
         </motion.div>
 
         {/* Submit Button */}
@@ -196,7 +221,7 @@ function ContactUs() {
           type="submit"
           variants={buttonVariants}
           whileHover="hover"
-          className="mt-6 px-6 py-3 bg-purple-600 text-white font-medium rounded-lg shadow hover:bg-purple-700 transition">
+          className="mt-1 px-6 py-3 bg-purple-600 text-white font-medium rounded-lg shadow hover:bg-purple-700 transition">
           {loading ? "Sending..." : "Submit"}
         </motion.button>
       </motion.form>

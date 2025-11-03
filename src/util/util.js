@@ -10,9 +10,9 @@ export const getFormattedDateTime = () => {
 };
 
 export const emailJsConfig = {
-  serviceId: "service_lkzu9mc",
-  templateId: "template_nd9gb8p",
-  publicKey: "Qa8uNHT1SJ1TO403N",
+  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
 };
 
 export const projects = [
