@@ -10,14 +10,14 @@ export const getFormattedDateTime = () => {
 };
 
 export const emailJsConfig = {
-  serviceId: "service_lkzu9mc",
-  templateId: "template_nd9gb8p",
-  publicKey: "Qa8uNHT1SJ1TO403N",
+  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
 };
 
 export const projects = [
-  { src: "/img1.jpg", link: "https://example.com/gallery/1" },
-  { src: "/img2.jpg", link: "https://example.com/gallery/2" },
+  { src: "/project1.png", link: "https://www.cubicksmarks.com/" },
+  { src: "/project2.png", link: "https://tatvacreators.com/" },
   { src: "/img3.jpg", link: "https://example.com/gallery/3" },
   { src: "/img4.jpg", link: "https://example.com/gallery/4" },
   { src: "/img5.jpg", link: "https://example.com/gallery/5" },
