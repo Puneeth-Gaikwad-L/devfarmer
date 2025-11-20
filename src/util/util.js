@@ -87,3 +87,58 @@ export const testimonials = [
     avatar: "/profile.jpg",
   },
 ];
+
+export const slides = [
+  {
+    id: "responsive",
+    label: "Responsive Experience",
+    eyebrow: "Built for every screen",
+    title: "Build Once. Perform Everywhere.",
+    description:
+      "Your users switch between phone, tablet, and laptop all day. We design and build interfaces that stay sharp, smooth, and intuitive on every device.",
+    bullets: [
+      "Mobile-first layouts tuned for real usage",
+      "Fluid components that adapt to any viewport",
+      "Consistent brand experience across platforms",
+    ],
+  },
+  {
+    id: "performance",
+    label: "Performance Engineering",
+    eyebrow: "Fast by design",
+    title: "Speed That Converts. Architecture That Scales.",
+    description:
+      "From APIs to frontend rendering, every layer is optimized for speed. Your product feels instant today and stays stable when traffic grows.",
+    bullets: [
+      "Optimized APIs, queries, and caching",
+      "Modern frontend stacks for snappy UI",
+      "Built to handle spikes without breaking",
+    ],
+  },
+  {
+    id: "security",
+    label: "Security & Stability",
+    eyebrow: "Protected by default",
+    title: "Your Product, Secured. Your Data, Protected.",
+    description:
+      "We bake in security from day one: safe auth flows, encrypted data, and clean architecture that keeps your users and business assets safe.",
+    bullets: [
+      "Best-practice auth and authorization",
+      "Encrypted data flows and storage",
+      "Defensive coding and clear boundaries",
+    ],
+  },
+  {
+    id: "growth",
+    label: "Scalable Architecture",
+    eyebrow: "Future-ready builds",
+    title: "Modular. Future-Proof. Ready to Evolve.",
+    description:
+      "Your business will grow – your product should keep up. Our modular architecture lets you ship new features faster without painful rewrites.",
+    bullets: [
+      "Modular services and clean boundaries",
+      "Easy integrations with tools you already use",
+      "Designed to reduce long-term dev costs",
+    ],
+  },
+];
