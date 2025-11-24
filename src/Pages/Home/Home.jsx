@@ -8,6 +8,7 @@ import Testimonials from "../../Components/Testimonials/Testimonials";
 import TheTeam from "../../Components/TheTeam/TheTeam";
 import ProcessSteps from "../../Components/ProcessSteps/ProcessSteps";
 import { FeatureShowcase } from "../../Components/FeatureShowcase/FeatureShowcase";
+import ProjectsCarousel from "../../Components/ProjectsCarousel/ProjectsCarousel";
 
 function Home() {
   return (
@@ -16,7 +17,8 @@ function Home() {
       <Hero />
       {/* <BentoCards /> */}
       <FeatureShowcase />
-      <RotatingCircle />
+      {/* <RotatingCircle /> */}
+      <ProjectsCarousel />
       <TheTeam />
       {/* <ProcessSteps /> */}
       <Testimonials />
