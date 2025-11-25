@@ -1,257 +1,200 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react'
-import { projects as projectsList } from '../../util/util'
+import { useRef, useState, useEffect } from 'react'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import {projects as projectsList} from '../../util/util'
+
+function CarouselItem({ project, index, scrollProgress, totalItems, onClick }) {
+  const activeFloat = useTransform(scrollProgress, [0, 1], [0, totalItems - 1])
+  
+  // Smooth spring animation for all transforms
+  const active = useTransform(activeFloat, (val) => index - val)
+  const activeSpring = useSpring(active, { stiffness: 100, damping: 30, mass: 0.5 })
+  
+  const x = useTransform(activeSpring, (val) => `${val * 70}%`)
+  const y = useTransform(activeSpring, (val) => `${val * 25}%`)
+  const rotate = useTransform(activeSpring, (val) => `${val * 18}deg`)
+  const opacity = useTransform(activeSpring, (val) => Math.max(0, 1 - Math.abs(val) * 0.4))
+  
+  // Z-index based on distance from center
+  const zIndex = useTransform(activeSpring, (val) => 
+    totalItems - Math.round(Math.abs(val))
+  )
+
+  return (
+    <motion.a
+      href={project.link}
+      target="_blank"
+      rel="noreferrer"
+      onClick={(e) => {
+        e.preventDefault()
+        onClick(index)
+        window.open(project.link, '_blank')
+      }}
+      className="carousel-item absolute pointer-events-auto rounded-lg shadow-2xl bg-black/80 overflow-hidden cursor-pointer"
+      style={{
+        x,
+        y,
+        rotate,
+        zIndex,
+        width: 'clamp(150px, 30vw, 300px)',
+        height: 'clamp(200px, 40vw, 400px)',
+        top: '50%',
+        left: '50%',
+        marginTop: 'calc(clamp(200px, 40vw, 400px) * -0.5)',
+        marginLeft: 'calc(clamp(150px, 30vw, 300px) * -0.5)',
+        transformOrigin: '0% 100%',
+        willChange: 'transform',
+        backfaceVisibility: 'hidden'
+      }}
+      aria-label={project.title || `Project ${index + 1}`}
+    >
+      <motion.div 
+        className="absolute inset-0 w-full h-full"
+        style={{ opacity }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-400/30 via-transparent to-black/50 z-10" />
+        <img 
+          src={project.src} 
+          alt={project.title || `project-${index + 1}`} 
+          className="w-full h-full object-cover pointer-events-none"
+          loading="lazy"
+        />
+        <div className="absolute left-5 bottom-5 z-20 text-white text-[clamp(20px,3vw,30px)] drop-shadow-lg font-bold">
+          {project.title || `Project ${index + 1}`}
+        </div>
+        <div className="absolute left-5 top-3 z-20 text-white/60 text-[clamp(20px,10vw,80px)] font-bold">
+          {String(index + 1).padStart(2, '0')}
+        </div>
+      </motion.div>
+    </motion.a>
+  )
+}
 
 export default function ProjectsCarousel({ projects = projectsList }) {
   const containerRef = useRef(null)
-  const itemsRef = useRef([])
-  const cursorsRef = useRef([])
-  const progressRef = useRef(0)
-  const progressBarRef = useRef(null)
-  const rafRef = useRef(null)
-  const lastActiveIndexRef = useRef(-1)
-  const scrollMultiplier = 3
-
-  const clamp = (v, a = 0, b = 100) => Math.max(a, Math.min(b, v))
-  const getZindex = (len, i, active) => len - Math.abs(i - active)
-
-  // Cached geometry
-  const geomRef = useRef({
-    containerTop: 0,
-    containerHeight: 1,
-    viewportHeight: typeof window !== 'undefined' ? window.innerHeight : 1,
-    scrollableDistance: 1
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
+  
+  // Use Framer Motion's optimized scroll tracking
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  })
+  
+  // Smooth spring animation for scroll progress
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    mass: 0.5
   })
 
-  // Animate: single DOM write per frame (set --progress on container)
-  const animate = useCallback((p) => {
-    const clamped = clamp(p)
-    progressRef.current = clamped
-    // Single write: set a CSS var on container
-    if (containerRef.current) {
-      containerRef.current.style.setProperty('--progress', `${clamped}`)
-    }
-    // Update progress bar
-    if (progressBarRef.current) {
-      progressBarRef.current.style.height = `${clamped}%`
-    }
+  // Progress bar height
+  const progressHeight = useTransform(smoothProgress, [0, 1], ['0%', '100%'])
 
-    // update z-index only when rounded active index changes
-    const activeFloat = (clamped / 100) * (projects.length - 1)
-    const activeIndex = Math.round(activeFloat)
-    if (lastActiveIndexRef.current !== activeIndex) {
-      lastActiveIndexRef.current = activeIndex
-      // Only update z-index here (infrequent)
-      itemsRef.current.forEach((item, i) => {
-        if (!item) return
-        item.style.zIndex = String(getZindex(projects.length, i, activeIndex))
-      })
-    }
-  }, [projects.length])
-
-  // Setup geometry caching & observers
+  // Mouse cursor tracking (throttled)
   useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
-
-    const recalcGeom = () => {
-      const rect = container.getBoundingClientRect()
-      const docTop = window.scrollY || window.pageYOffset
-      const containerTop = rect.top + docTop
-      const containerHeight = container.offsetHeight || rect.height || 1
-      const viewportHeight = window.innerHeight
-      const scrollableDistance = Math.max(0.0001, containerHeight - viewportHeight)
-      geomRef.current = { containerTop, containerHeight, viewportHeight, scrollableDistance }
-    }
-
-    recalcGeom()
-    // ResizeObserver to update geometry if container size changes (efficient)
-    let ro
-    if (window.ResizeObserver) {
-      ro = new ResizeObserver(recalcGeom)
-      ro.observe(container)
-    }
-    window.addEventListener('resize', recalcGeom)
-
-    return () => {
-      if (ro) ro.disconnect()
-      window.removeEventListener('resize', recalcGeom)
-    }
-  }, [])
-
-  // Main scroll handler: uses cached geometry and runs only while intersecting
-  useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
-
-    let isIntersecting = true
-
-    // IntersectionObserver to only run when in view
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(en => {
-        isIntersecting = en.isIntersecting
-      })
-    }, { root: null, threshold: 0 })
-
-    io.observe(container)
-
-    const handleScroll = () => {
-      if (!isIntersecting) return
-      if (rafRef.current) cancelAnimationFrame(rafRef.current)
-      rafRef.current = requestAnimationFrame(() => {
-        const { containerTop, scrollableDistance } = geomRef.current
-        const scrolled = window.scrollY - containerTop
-        if (scrollableDistance <= 0) return
-        const newProgress = clamp((scrolled / scrollableDistance) * 100)
-        animate(newProgress)
-      })
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    // initial call
-    handleScroll()
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      if (rafRef.current) cancelAnimationFrame(rafRef.current)
-      io.disconnect()
-    }
-  }, [animate])
-
-  // Mouse cursor tracking (decorative)
-  useEffect(() => {
+    let rafId
     const handleMouseMove = (e) => {
-      cursorsRef.current.forEach((c) => {
-        if (!c) return
-        c.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`
+      if (rafId) return
+      rafId = requestAnimationFrame(() => {
+        setCursorPos({ x: e.clientX, y: e.clientY })
+        rafId = null
       })
     }
+    
     document.addEventListener('mousemove', handleMouseMove)
-    return () => document.removeEventListener('mousemove', handleMouseMove)
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove)
+      if (rafId) cancelAnimationFrame(rafId)
+    }
   }, [])
 
-  // assign per-item index var (done once) and container-level vars
-  useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
-    container.style.setProperty('--items', String(projects.length))
-    itemsRef.current.forEach((el, i) => {
-      if (!el) return
-      el.style.setProperty('--i', String(i))
-      // ensure initial z-index
-      el.style.zIndex = String(getZindex(projects.length, i, 0))
-    })
-  }, [projects.length])
-
-  // onItemClick unchanged (smooth scroll to item)
-  const onItemClick = (i) => {
-    const container = containerRef.current
-    if (!container) return
-
-    const targetProgress = (i / (projects.length - 1)) * 100
-    const { containerTop, scrollableDistance } = geomRef.current
-    const targetScroll = containerTop + (targetProgress / 100) * scrollableDistance
-
+  const onItemClick = (index) => {
+    if (!containerRef.current) return
+    
+    const rect = containerRef.current.getBoundingClientRect()
+    const containerTop = rect.top + window.scrollY
+    const containerHeight = containerRef.current.offsetHeight
+    const viewportHeight = window.innerHeight
+    const scrollableDistance = containerHeight - viewportHeight
+    
+    const targetProgress = index / (projects.length - 1)
+    const targetScroll = containerTop + targetProgress * scrollableDistance
+    
     window.scrollTo({ top: targetScroll, behavior: 'smooth' })
   }
-
-  // Initial animation
-  useEffect(() => { animate(0) }, [animate])
 
   return (
     <div
       ref={containerRef}
       className="relative w-full font-['Roboto']"
-      style={{
-        height: `${scrollMultiplier * 100}vh`,
-        // starting progress var
-        '--progress': '0'
-      }}
+      style={{ height: '300vh' }}
     >
+      {/* Header */}
       <div className="w-full px-4 my-20">
         <div className="max-w-xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-purple-700">
             <span className="text-purple-400">Ideas</span> in Action
           </h1>
           <p className="text-gray-500 mb-6">
-            Transform your ideas into breathtaking visuals with cutting-edge
-            technology.
+            Transform your ideas into breathtaking visuals with cutting-edge technology.
           </p>
         </div>
       </div>
 
+      {/* Sticky carousel container */}
       <div className="sticky top-0 h-screen w-full overflow-hidden">
-        <div ref={(el) => (cursorsRef.current[0] = el)} className="cursor fixed z-50 hidden md:block pointer-events-none" />
-        <div ref={(el) => (cursorsRef.current[1] = el)} className="cursor2 fixed z-50 hidden md:block pointer-events-none" />
+        {/* Custom cursors */}
+        <motion.div 
+          className="fixed z-50 hidden md:block pointer-events-none rounded-full border border-white/20"
+          style={{
+            width: 40,
+            height: 40,
+            left: 0,
+            top: 0,
+            x: cursorPos.x - 20,
+            y: cursorPos.y - 20
+          }}
+          transition={{ type: "spring", stiffness: 200, damping: 20 }}
+        />
+        <motion.div 
+          className="fixed z-50 hidden md:block pointer-events-none rounded-full bg-white"
+          style={{
+            width: 2,
+            height: 2,
+            left: 0,
+            top: 0,
+            x: cursorPos.x - 1,
+            y: cursorPos.y - 1
+          }}
+          transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        />
 
-        <div className="carousel relative h-full w-full pointer-events-none">
-          {projects.map((p, i) => (
-            <a
-              key={i}
-              href={p.link}
-              target="_blank"
-              rel="noreferrer"
-              onClick={(e) => { e.preventDefault(); onItemClick(i); window.open(p.link, '_blank') }}
-              className="carousel-item absolute pointer-events-auto rounded-lg shadow-2xl bg-black/80 overflow-hidden"
-              ref={(el) => (itemsRef.current[i] = el)}
-              aria-label={p.title || `Project ${i + 1}`}
-            >
-              <div className="carousel-box absolute inset-0 w-full h-full">
-                <div className="absolute inset-0 bg-gradient-to-b from-purple-400/30 via-transparent to-black/50 z-10" />
-                <img src={p.src} alt={p.title || `project-${i + 1}`} className="w-full h-full object-cover pointer-events-none" />
-                <div className="title absolute left-5 bottom-5 z-20 text-white text-[clamp(20px,3vw,30px)] drop-shadow">{p.title || `Project ${i + 1}`}</div>
-                <div className="num absolute left-5 top-3 z-20 text-white text-[clamp(20px,10vw,80px)]">{String(i + 1).padStart(2, '0')}</div>
-              </div>
-            </a>
+        {/* Carousel items */}
+        <div className="relative h-full w-full pointer-events-none">
+          {projects.map((project, index) => (
+            <CarouselItem
+              key={index}
+              project={project}
+              index={index}
+              scrollProgress={smoothProgress}
+              totalItems={projects.length}
+              onClick={onItemClick}
+            />
           ))}
         </div>
 
-        <div className="layout pointer-events-none">
-          <div className="box absolute bottom-0 left-8 text-white/40 -rotate-90 text-xs tracking-widest">Projects — Portfolio</div>
+        {/* Label */}
+        <div className="absolute bottom-0 left-8 text-white/40 -rotate-90 text-xs tracking-widest pointer-events-none">
+          Projects — Portfolio
         </div>
 
+        {/* Progress bar */}
         <div className="absolute right-8 top-1/2 -translate-y-1/2 h-32 w-0.5 bg-white/20 rounded-full overflow-hidden">
-          <div
-            ref={progressBarRef}
+          <motion.div
             className="w-full bg-white/80 rounded-full"
-            style={{ height: '0%' }}
+            style={{ height: progressHeight }}
           />
         </div>
       </div>
-
-      <style>{`
-        .carousel-item {
-          --items: ${projects.length};
-          --width: clamp(150px, 30vw, 300px);
-          --height: clamp(200px, 40vw, 400px);
-
-          /* compute active as difference between index and animated float:
-             activeFloat = (var(--progress)/100) * (var(--items) - 1)
-             --active = --i - activeFloat
-          */
-          --active: calc(var(--i) - ((var(--progress) / 100) * (var(--items) - 1)));
-          --x: calc(var(--active) * 70%);
-          --y: calc(var(--active) * 25%);
-          --rot: calc(var(--active) * 18deg);
-          --opacity: calc(1 - abs(var(--active)) * 0.4);
-
-          width: var(--width);
-          height: var(--height);
-          top: 50%;
-          left: 50%;
-          margin: calc(var(--height) * -0.5) 0 0 calc(var(--width) * -0.5);
-          transform-origin: 0% 100%;
-          transform: translate3d(var(--x), var(--y), 0) rotate(var(--rot));
-          transition: none;
-          will-change: transform, opacity;
-          backface-visibility: hidden;
-        }
-        .carousel-item .carousel-box {
-          opacity: var(--opacity);
-          transition: none;
-        }
-        .cursor { --size: 40px; width: var(--size); height: var(--size); margin: calc(var(--size) * -0.5) 0 0 calc(var(--size) * -0.5); border-radius: 9999px; border: 1px solid rgba(255,255,255,0.2); transition: transform .85s cubic-bezier(0,0.02,0,1); }
-        .cursor2 { --size: 2px; width: var(--size); height: var(--size); transition-duration: .7s; }
-      `}</style>
     </div>
   )
 }
