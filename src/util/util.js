@@ -18,8 +18,8 @@ export const emailJsConfig = {
 export const projects = [
   { src: "/project1.png", link: "https://www.cubicksmarks.com/", title: "Cubicksmarks" },
   { src: "/project2.png", link: "https://tatvacreators.com/", title: "Tatva Creators" },
-  { src: "/img3.jpg", link: "https://example.com/gallery/3" },
-  { src: "/img4.jpg", link: "https://example.com/gallery/4" },
+  { src: "/param.png", link: "https://param-enviro.netlify.app", title: "Param-enviro" },
+  { src: "./SavarkarPratishtana.png", link: "https://savarkarpratishtana.netlify.app/", title: "Savarkar Pratishtana" },
   { src: "/img5.jpg", link: "https://example.com/gallery/5" },
   { src: "/img6.jpg", link: "https://example.com/gallery/6" },
   { src: "/img7.jpg", link: "https://example.com/gallery/7" },
