@@ -20,10 +20,10 @@ export const projects = [
   { src: "/project2.png", link: "https://tatvacreators.com/", title: "Tatva Creators" },
   { src: "/param.png", link: "https://param-enviro.netlify.app", title: "Param-enviro" },
   { src: "./SavarkarPratishtana.png", link: "https://savarkarpratishtana.netlify.app/", title: "Savarkar Pratishtana" },
-  { src: "/img5.jpg", link: "https://example.com/gallery/5" },
-  { src: "/img6.jpg", link: "https://example.com/gallery/6" },
-  { src: "/img7.jpg", link: "https://example.com/gallery/7" },
-  { src: "/img8.jpg", link: "https://example.com/gallery/8" },
+  // { src: "/img5.jpg", link: "https://example.com/gallery/5" },
+  // { src: "/img6.jpg", link: "https://example.com/gallery/6" },
+  // { src: "/img7.jpg", link: "https://example.com/gallery/7" },
+  // { src: "/img8.jpg", link: "https://example.com/gallery/8" },
 ];
 
 export const teamMembers = [
