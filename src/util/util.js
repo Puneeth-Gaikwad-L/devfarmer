@@ -10,20 +10,20 @@ export const getFormattedDateTime = () => {
 };
 
 export const emailJsConfig = {
-  serviceId: "service_lkzu9mc",
-  templateId: "template_nd9gb8p",
-  publicKey: "Qa8uNHT1SJ1TO403N",
+  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
 };
 
 export const projects = [
-  { src: "/project1.png", link: "https://www.cubicksmarks.com/" },
-  { src: "/project2.png", link: "https://tatvacreators.com/" },
-  { src: "/img3.jpg", link: "https://example.com/gallery/3" },
-  { src: "/img4.jpg", link: "https://example.com/gallery/4" },
-  { src: "/img5.jpg", link: "https://example.com/gallery/5" },
-  { src: "/img6.jpg", link: "https://example.com/gallery/6" },
-  { src: "/img7.jpg", link: "https://example.com/gallery/7" },
-  { src: "/img8.jpg", link: "https://example.com/gallery/8" },
+  { src: "/project1.png", link: "https://www.cubicksmarks.com/", title: "Cubicksmarks" },
+  { src: "/project2.png", link: "https://tatvacreators.com/", title: "Tatva Creators" },
+  { src: "/param.png", link: "https://param-enviro.netlify.app", title: "Param-enviro" },
+  { src: "./SavarkarPratishtana.png", link: "https://savarkarpratishtana.netlify.app/", title: "Savarkar Pratishtana" },
+  // { src: "/img5.jpg", link: "https://example.com/gallery/5" },
+  // { src: "/img6.jpg", link: "https://example.com/gallery/6" },
+  // { src: "/img7.jpg", link: "https://example.com/gallery/7" },
+  // { src: "/img8.jpg", link: "https://example.com/gallery/8" },
 ];
 
 export const teamMembers = [
@@ -85,5 +85,60 @@ export const testimonials = [
     feedback:
       "The team did a fantastic job bringing our vision to life. The website looks clean, professional, and exactly how we imagined it.",
     avatar: "/profile.jpg",
+  },
+];
+
+export const slides = [
+  {
+    id: "responsive",
+    label: "Responsive Experience",
+    eyebrow: "Built for every screen",
+    title: "Build Once. Perform Everywhere.",
+    description:
+      "Your users switch between phone, tablet, and laptop all day. We design and build interfaces that stay sharp, smooth, and intuitive on every device.",
+    bullets: [
+      "Mobile-first layouts tuned for real usage",
+      "Fluid components that adapt to any viewport",
+      "Consistent brand experience across platforms",
+    ],
+  },
+  {
+    id: "performance",
+    label: "Performance Engineering",
+    eyebrow: "Fast by design",
+    title: "Speed That Converts. Architecture That Scales.",
+    description:
+      "From APIs to frontend rendering, every layer is optimized for speed. Your product feels instant today and stays stable when traffic grows.",
+    bullets: [
+      "Optimized APIs, queries, and caching",
+      "Modern frontend stacks for snappy UI",
+      "Built to handle spikes without breaking",
+    ],
+  },
+  {
+    id: "security",
+    label: "Security & Stability",
+    eyebrow: "Protected by default",
+    title: "Your Product, Secured. Your Data, Protected.",
+    description:
+      "We bake in security from day one: safe auth flows, encrypted data, and clean architecture that keeps your users and business assets safe.",
+    bullets: [
+      "Best-practice auth and authorization",
+      "Encrypted data flows and storage",
+      "Defensive coding and clear boundaries",
+    ],
+  },
+  {
+    id: "growth",
+    label: "Scalable Architecture",
+    eyebrow: "Future-ready builds",
+    title: "Modular. Future-Proof. Ready to Evolve.",
+    description:
+      "Your business will grow – your product should keep up. Our modular architecture lets you ship new features faster without painful rewrites.",
+    bullets: [
+      "Modular services and clean boundaries",
+      "Easy integrations with tools you already use",
+      "Designed to reduce long-term dev costs",
+    ],
   },
 ];

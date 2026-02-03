@@ -7,16 +7,20 @@ import RotatingCircle from "../../Components/ProjectSection/ProjectSection";
 import Testimonials from "../../Components/Testimonials/Testimonials";
 import TheTeam from "../../Components/TheTeam/TheTeam";
 import ProcessSteps from "../../Components/ProcessSteps/ProcessSteps";
+import { FeatureShowcase } from "../../Components/FeatureShowcase/FeatureShowcase";
+import ProjectsCarousel from "../../Components/ProjectsCarousel/ProjectsCarousel";
 
 function Home() {
   return (
     <>
       <Navbar />
       <Hero />
-      <BentoCards />
-      <RotatingCircle />
+      {/* <BentoCards /> */}
+      <FeatureShowcase />
+      {/* <RotatingCircle /> */}
+      <ProjectsCarousel />
       <TheTeam />
-      <ProcessSteps />
+      {/* <ProcessSteps /> */}
       <Testimonials />
       <ContactUs />
     </>
