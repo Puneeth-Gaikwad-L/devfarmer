@@ -15,10 +15,9 @@ function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#" },
-    { name: "About", href: "#skills" },
-    { name: "Projects", href: "#circle-section" },
-    { name: "Blogs", href: "#" },
+    { name: "Home", href: "#home" },
+    { name: "Team", href: "#the-team" },
+    { name: "Contact", href: "#contact-us" },
   ];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
