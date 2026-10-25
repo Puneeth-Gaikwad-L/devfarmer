@@ -4,209 +4,6 @@ import { slides } from "../../util/util";
 
 const AUTO_PLAY_MS = 8000;
 
-const renderLaptopContent = (slideId) => {
-  switch (slideId) {
-    case "responsive":
-      return (
-        <div className="flex h-full flex-col gap-4 p-4">
-          {/* Top title bar */}
-          <div className="h-7 w-2/3 rounded-xl bg-gradient-to-r from-[#a855f7] to-[#6366f1]" />
-          {/* Three columns layout to hint responsive grid */}
-          <div className="flex gap-3 mt-2">
-            <div className="flex-1 space-y-3">
-              <div className="h-3 w-5/6 rounded-lg bg-white/10" />
-              <div className="h-3 w-4/6 rounded-lg bg-white/7" />
-              <div className="h-3 w-3/4 rounded-lg bg-white/5" />
-            </div>
-            <div className="flex-1 space-y-3">
-              <div className="h-3 w-4/6 rounded-lg bg-white/10" />
-              <div className="h-3 w-full rounded-lg bg-white/7" />
-              <div className="h-3 w-3/5 rounded-lg bg-white/5" />
-            </div>
-            <div className="flex-1 space-y-3 hidden md:block">
-              <div className="h-3 w-5/6 rounded-lg bg-white/10" />
-              <div className="h-3 w-4/6 rounded-lg bg-white/7" />
-              <div className="h-3 w-2/3 rounded-lg bg-white/5" />
-            </div>
-          </div>
-          {/* Bottom CTA */}
-          <div className="mt-auto h-6 w-1/2 rounded-xl bg-gradient-to-r from-[#22d3ee] to-[#a855f7]" />
-        </div>
-      );
-
-    case "performance":
-      return (
-        <div className="flex h-full flex-col gap-4 p-4">
-          {/* Top bar */}
-          <div className="h-6 w-1/2 rounded-lg bg-gradient-to-r from-[#22c55e] to-[#4ade80]" />
-          {/* Graph / speed bars */}
-          <div className="mt-2 flex-1 flex items-end gap-2">
-            <div className="h-10 w-4 rounded-full bg-white/10" />
-            <div className="h-16 w-4 rounded-full bg-white/20" />
-            <div className="h-24 w-4 rounded-full bg-gradient-to-t from-[#22d3ee] to-[#a855f7]" />
-            <div className="h-14 w-4 rounded-full bg-white/15" />
-            <div className="h-20 w-4 rounded-full bg-gradient-to-t from-[#4ade80] to-[#22c55e]" />
-          </div>
-          {/* Latency row */}
-          <div className="flex gap-3 text-[10px] text-slate-200/70">
-            <div className="flex-1 h-5 rounded-md bg-white/5" />
-            <div className="flex-1 h-5 rounded-md bg-white/5" />
-          </div>
-        </div>
-      );
-
-    case "security":
-      return (
-        <div className="flex h-full flex-col gap-4 p-4">
-          {/* Shield / lock block */}
-          <div className="mx-auto mt-2 h-16 w-16 rounded-2xl border border-violet-400/60 bg-gradient-to-br from-[#4c1d95] to-[#020617] flex items-center justify-center shadow-[0_0_30px_rgba(129,140,248,0.6)]">
-            <div className="h-7 w-5 rounded-md border border-violet-200/70 bg-violet-500/30 flex items-center justify-center">
-              <div className="h-3 w-3 rounded-sm bg-white/90" />
-            </div>
-          </div>
-          {/* Security rows */}
-          <div className="space-y-3 mt-2">
-            <div className="h-3 w-3/4 rounded-lg bg-white/10" />
-            <div className="h-3 w-2/3 rounded-lg bg-white/7" />
-            <div className="h-3 w-1/2 rounded-lg bg-white/5" />
-          </div>
-          {/* Tags */}
-          <div className="mt-auto flex flex-wrap gap-2 text-[10px]">
-            <span className="rounded-full bg-white/10 px-2 py-1">OAuth</span>
-            <span className="rounded-full bg-white/10 px-2 py-1">JWT</span>
-            <span className="rounded-full bg-white/10 px-2 py-1">TLS</span>
-          </div>
-        </div>
-      );
-
-    case "growth":
-      return (
-        <div className="flex h-full flex-col gap-4 p-4">
-          {/* Title */}
-          <div className="h-6 w-2/3 rounded-lg bg-gradient-to-r from-[#a855f7] to-[#f97316]" />
-          {/* Growth chart */}
-          <div className="mt-3 flex-1 flex items-end gap-3">
-            <div className="h-6 w-5 rounded-lg bg-white/8" />
-            <div className="h-10 w-5 rounded-lg bg-white/10" />
-            <div className="h-16 w-5 rounded-lg bg-white/20" />
-            <div className="h-24 w-5 rounded-lg bg-gradient-to-t from-[#f97316] to-[#a855f7]" />
-          </div>
-          {/* Integration pills */}
-          <div className="mt-auto flex flex-wrap gap-2 text-[10px] text-slate-200/80">
-            <div className="rounded-full bg-white/5 px-2 py-1">APIs</div>
-            <div className="rounded-full bg-white/5 px-2 py-1">Microservices</div>
-            <div className="rounded-full bg-white/5 px-2 py-1">Integrations</div>
-          </div>
-        </div>
-      );
-
-    default:
-      return (
-        <div className="flex h-full flex-col gap-4 p-4">
-          <div className="h-7 w-3/4 rounded-xl bg-gradient-to-r from-[#b48cff] to-[#7dd3fc]" />
-          <div className="flex gap-3">
-            <div className="flex-1 space-y-3">
-              <div className="h-4 w-5/6 rounded-lg bg-white/8" />
-              <div className="h-4 w-4/6 rounded-lg bg-white/6" />
-              <div className="h-4 w-3/6 rounded-lg bg-white/4" />
-            </div>
-            <div className="flex-1 space-y-3">
-              <div className="h-4 w-full rounded-lg bg-white/8" />
-              <div className="h-4 w-5/6 rounded-lg bg-white/6" />
-              <div className="h-4 w-4/6 rounded-lg bg-white/4" />
-            </div>
-          </div>
-          <div className="mt-auto h-6 w-2/3 rounded-xl bg-gradient-to-r from-[#6366f1] to-[#a855f7]" />
-        </div>
-      );
-  }
-};
-
-const renderPhoneContent = (slideId) => {
-  switch (slideId) {
-    case "responsive":
-      return (
-        <div className="flex h-full flex-col gap-3">
-          <div className="h-4 w-3/4 rounded-xl bg-gradient-to-r from-[#a855f7] to-[#6366f1]" />
-          <div className="space-y-2">
-            <div className="h-3 w-full rounded-lg bg-white/10" />
-            <div className="h-3 w-5/6 rounded-lg bg-white/7" />
-          </div>
-          <div className="space-y-2">
-            <div className="h-3 w-4/5 rounded-lg bg-white/10" />
-            <div className="h-3 w-3/5 rounded-lg bg-white/7" />
-          </div>
-          <div className="mt-auto h-7 w-full rounded-xl bg-gradient-to-r from-[#22d3ee] to-[#a855f7]" />
-        </div>
-      );
-
-    case "performance":
-      return (
-        <div className="flex h-full flex-col gap-3">
-          <div className="h-4 w-2/3 rounded-xl bg-gradient-to-r from-[#22c55e] to-[#4ade80]" />
-          <div className="mt-1 flex items-end gap-1">
-            <div className="h-5 w-2 rounded-full bg-white/10" />
-            <div className="h-8 w-2 rounded-full bg-white/15" />
-            <div className="h-12 w-2 rounded-full bg-gradient-to-t from-[#22d3ee] to-[#a855f7]" />
-            <div className="h-7 w-2 rounded-full bg-white/12" />
-          </div>
-          <div className="mt-auto h-6 w-3/4 rounded-xl bg-gradient-to-r from-[#38bdf8] to-[#6366f1]" />
-        </div>
-      );
-
-    case "security":
-      return (
-        <div className="flex h-full flex-col gap-3">
-          <div className="h-4 w-1/2 rounded-xl bg-gradient-to-r from-[#4c1d95] to-[#7c3aed]" />
-          <div className="mt-1 flex items-center justify-center">
-            <div className="h-10 w-10 rounded-2xl border border-violet-300/70 bg-violet-600/40 flex items-center justify-center">
-              <div className="h-5 w-4 rounded-md bg-white" />
-            </div>
-          </div>
-          <div className="space-y-2 mt-2">
-            <div className="h-3 w-4/5 rounded-lg bg-white/10" />
-            <div className="h-3 w-2/3 rounded-lg bg-white/7" />
-          </div>
-          <div className="mt-auto flex gap-2 text-[9px] text-slate-200/80">
-            <span className="rounded-full bg-white/10 px-2 py-1">2FA</span>
-            <span className="rounded-full bg-white/10 px-2 py-1">Secure login</span>
-          </div>
-        </div>
-      );
-
-    case "growth":
-      return (
-        <div className="flex h-full flex-col gap-3">
-          <div className="h-4 w-3/4 rounded-xl bg-gradient-to-r from-[#f97316] to-[#a855f7]" />
-          <div className="mt-2 flex items-end gap-1">
-            <div className="h-4 w-2 rounded-lg bg-white/10" />
-            <div className="h-7 w-2 rounded-lg bg-white/14" />
-            <div className="h-10 w-2 rounded-lg bg-white/18" />
-            <div className="h-14 w-2 rounded-lg bg-gradient-to-t from-[#f97316] to-[#a855f7]" />
-          </div>
-          <div className="mt-auto h-6 w-4/5 rounded-xl bg-gradient-to-r from-[#22d3ee] to-[#a855f7]" />
-        </div>
-      );
-
-    default:
-      return (
-        <div className="flex h-full flex-col gap-3">
-          <div className="h-4 w-3/4 rounded-xl bg-gradient-to-r from-[#a855f7] to-[#6366f1]" />
-          <div className="space-y-2">
-            <div className="h-3 w-full rounded-lg bg-white/10" />
-            <div className="h-3 w-5/6 rounded-lg bg-white/7" />
-          </div>
-          <div className="space-y-2">
-            <div className="h-3 w-full rounded-lg bg-white/10" />
-            <div className="h-3 w-4/6 rounded-lg bg-white/7" />
-          </div>
-          <div className="mt-auto h-7 w-full rounded-xl bg-gradient-to-r from-[#38bdf8] to-[#a855f7]" />
-        </div>
-      );
-  }
-};
-
-
 export function FeatureShowcase() {
     const [activeIndex, setActiveIndex] = useState(0);
     const timeoutRef = useRef(null);
@@ -243,55 +40,21 @@ export function FeatureShowcase() {
     return (
         <section id="services" className="relative w-full overflow-hidden scroll-mt-24 bg-gradient-to-b from-[#faf5ff] via-[#f7f2ff] to-[#f3e8ff] py-20">
             <div className="site-container site-container--narrow flex flex-col items-center gap-12 md:flex-row md:gap-16">
-                {/* LEFT: Device Mockups */}
+                {/* LEFT: Title-matched slide artwork */}
                 <div className="relative w-full max-w-md shrink-0">
-                    {/* Glow */}
-                    <div className="pointer-events-none absolute inset-0 -z-10 blur-3xl">
-                        <div className="h-full w-full rounded-[40px] bg-[radial-gradient(circle_at_top,_rgba(172,116,255,0.55),_transparent_60%),radial-gradient(circle_at_bottom,_rgba(101,220,255,0.4),_transparent_55%)]" />
-                    </div>
-
-                    {/* Laptop */}
-                    <motion.div
-                        key={`laptop-${activeSlide.id}`}
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -40 }}
-                        transition={{ duration: 0.7, ease: "easeOut" }}
-                        className="relative mx-auto w-full rounded-3xl bg-gradient-to-br from-[#201235] to-[#12081f] p-4 shadow-2xl shadow-purple-900/60"
-                    >
-                        <div className="mb-3 flex items-center gap-1">
-                            <span className="h-2 w-2 rounded-full bg-red-400" />
-                            <span className="h-2 w-2 rounded-full bg-amber-300" />
-                            <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                        </div>
-                        <div className="aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 bg-[#080311]">
-                            {renderLaptopContent(activeSlide.id)}
-                        </div>
-                        <div className="mt-3 h-2 rounded-b-3xl bg-gradient-to-r from-slate-900 to-slate-800" />
-                    </motion.div>
-
-                    {/* Phone */}
-                    <motion.div
-                        key={`phone-${activeSlide.id}`}
-                        initial={{ opacity: 0, y: 40, x: 40 }}
-                        animate={{ opacity: 1, y: 0, x: 0 }}
-                        exit={{ opacity: 0, y: 40, x: 40 }}
-                        transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-                        className="pointer-events-none absolute -bottom-6 -right-2 w-40 md:-right-10 md:w-44"
-                    >
-                        <div className="rounded-[34px] border border-white/20 bg-gradient-to-b from-[#181227] to-[#050209] p-2 shadow-2xl shadow-black/70">
-                            <div className="mb-2 flex justify-between px-1">
-                                <div className="h-2 w-8 rounded-full bg-white/15" />
-                                <div className="flex gap-1">
-                                    <div className="h-2 w-3 rounded-full bg-white/20" />
-                                    <div className="h-2 w-3 rounded-full bg-white/20" />
-                                </div>
-                            </div>
-                            <div className="aspect-[9/19] overflow-hidden rounded-[26px] border border-white/10 bg-[#05010b] p-3">
-                                {renderPhoneContent(activeSlide.id)}
-                            </div>
-                        </div>
-                    </motion.div>
+                    <div className="pointer-events-none absolute inset-0 -z-10 scale-90 rounded-[40px] bg-[radial-gradient(circle_at_top,_rgba(172,116,255,0.55),_transparent_60%),radial-gradient(circle_at_bottom,_rgba(101,220,255,0.4),_transparent_55%)] blur-3xl" />
+                    <AnimatePresence mode="wait">
+                        <motion.img
+                            key={activeSlide.id}
+                            src={activeSlide.image}
+                            alt={activeSlide.imageAlt}
+                            initial={{ opacity: 0, y: 24, scale: 0.98 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: -18, scale: 0.98 }}
+                            transition={{ duration: 0.55, ease: "easeOut" }}
+                            className="aspect-[3/2] w-full rounded-3xl object-cover shadow-2xl shadow-purple-900/20"
+                        />
+                    </AnimatePresence>
                 </div>
 
                 {/* RIGHT: Text + Controls */}
@@ -371,7 +134,7 @@ export function FeatureShowcase() {
                         </div>
 
                         {/* Progress indicator */}
-                        <div className="flex items-center gap-2 text-[11px] text-slate-400">
+                        <div className="flex items-center gap-2 text-[11px] text-slate-700">
                             <div className="relative h-1.5 w-20 overflow-hidden rounded-full bg-white/10">
                                 <motion.div
                                     key={activeSlide.id}

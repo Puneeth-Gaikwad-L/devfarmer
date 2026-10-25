@@ -91,6 +91,8 @@ export const testimonials = [
 export const slides = [
   {
     id: "responsive",
+    image: "/images/slide-responsive.jpg",
+    imageAlt: "A matching product interface shown on a laptop, tablet, and phone",
     label: "Responsive Experience",
     eyebrow: "Built for every screen",
     title: "Build Once. Perform Everywhere.",
@@ -104,6 +106,8 @@ export const slides = [
   },
   {
     id: "performance",
+    image: "/images/slide-performance.jpg",
+    imageAlt: "Connected server modules carrying fast streams of data",
     label: "Performance Engineering",
     eyebrow: "Fast by design",
     title: "Speed That Converts. Architecture That Scales.",
@@ -117,6 +121,8 @@ export const slides = [
   },
   {
     id: "security",
+    image: "/images/slide-security.jpg",
+    imageAlt: "A secure digital core protected by a shield",
     label: "Security & Stability",
     eyebrow: "Protected by default",
     title: "Your Product, Secured. Your Data, Protected.",
@@ -130,6 +136,8 @@ export const slides = [
   },
   {
     id: "growth",
+    image: "/images/slide-growth.jpg",
+    imageAlt: "Modular digital building blocks growing into an adaptable structure",
     label: "Scalable Architecture",
     eyebrow: "Future-ready builds",
     title: "Modular. Future-Proof. Ready to Evolve.",
