@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Brand from "../Brand/Brand";
 
+const NAV_BACKGROUND = "rgba(5,5,5,0.78)";
+const NAV_BACKGROUND_SCROLLED = "rgba(14,7,23,0.94)";
+
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -71,18 +74,18 @@ function Navbar() {
   return (
     <div className="fixed top-4 left-1/2 z-[5000] flex w-full -translate-x-1/2 justify-center px-2 sm:px-4">
       <motion.nav
-        className="flex w-full max-w-7xl items-center justify-between rounded-xl border border-white/50 px-4 shadow-lg shadow-black/20 backdrop-blur-2xl transition-all sm:px-6 lg:px-8"
+        className="flex w-full max-w-7xl items-center justify-between rounded-xl border border-brand-amethyst-edge/70 px-4 shadow-lg shadow-black/20 backdrop-blur-2xl transition-all sm:px-6 lg:px-8"
         initial={{
           padding: "0.5rem 1rem",
-          backgroundColor: "rgba(255,255,255,0.1)",
+          backgroundColor: NAV_BACKGROUND,
         }}
         animate={{
           width: isMobile ? "fit-content" : isScrolled ? "75%" : "90%",
           marginTop: "0rem",
           padding: isScrolled ? "0.2rem 1rem" : "0rem 1rem",
           backgroundColor: isScrolled
-            ? "rgba(255,255,255,0.4)"
-            : "rgba(255,255,255,0.1)",
+            ? NAV_BACKGROUND_SCROLLED
+            : NAV_BACKGROUND,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}>
         {/* Brand: left side on desktop */}
@@ -107,7 +110,7 @@ function Navbar() {
                   variants={linkVariants}>
                   <a
                     href={link.href}
-                    className="text-sm font-medium transition-colors hover:text-indigo-600 xl:text-base">
+                    className="text-sm font-medium transition-colors hover:text-brand-cyan xl:text-base">
                     {link.name}
                   </a>
                 </motion.li>
@@ -119,7 +122,7 @@ function Navbar() {
         {/* Desktop CTA: right side, not a menu item */}
         <a
           href="#contact"
-          className="relative hidden shrink-0 items-center justify-center overflow-hidden rounded-3xl border border-indigo-800 px-6 py-2 text-xs text-indigo-800 transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-indigo-700 before:duration-500 before:ease-out hover:shadow-xl hover:shadow-indigo-800/40 hover:before:h-56 hover:before:w-56 hover:text-white lg:inline-flex xl:px-10 xl:text-sm">
+          className="relative hidden shrink-0 items-center justify-center overflow-hidden rounded-3xl border border-brand-cyan px-6 py-2 text-xs text-brand-cyan transition-colors duration-300 hover:bg-brand-cyan hover:text-brand-black hover:shadow-xl hover:shadow-brand-cyan/30 lg:inline-flex xl:px-10 xl:text-sm">
           <span className="relative z-10">Let&apos;s talk</span>
         </a>
 
@@ -133,17 +136,17 @@ function Navbar() {
             aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation">
             <span
-              className={`block h-0.5 w-6 bg-black transition-all duration-300 ${
+              className={`block h-0.5 w-6 bg-brand-cyan transition-all duration-300 ${
                 isMenuOpen ? "translate-y-1.5 rotate-45" : ""
               }`}
             />
             <span
-              className={`block h-0.5 w-6 bg-black transition-all duration-300 ${
+              className={`block h-0.5 w-6 bg-brand-cyan transition-all duration-300 ${
                 isMenuOpen ? "opacity-0" : ""
               }`}
             />
             <span
-              className={`block h-0.5 w-6 bg-black transition-all duration-300 ${
+              className={`block h-0.5 w-6 bg-brand-cyan transition-all duration-300 ${
                 isMenuOpen ? "-translate-y-1.5 -rotate-45" : ""
               }`}
             />
@@ -160,8 +163,8 @@ function Navbar() {
             animate="visible"
             exit="hidden"
             variants={bulbVariants}>
-            <div className="relative z-10 flex items-center gap-2 rounded-full bg-indigo-600 px-3 py-1 text-xs font-semibold text-white shadow-md sm:text-sm animate-pulse">
-              <span className="h-2 w-2 rounded-full bg-green-400" />
+            <div className="relative z-10 flex items-center gap-2 rounded-full bg-brand-amethyst px-3 py-1 text-xs font-semibold text-white shadow-md sm:text-sm animate-pulse">
+              <span className="h-2 w-2 rounded-full bg-brand-cyan" />
               Looking forward to connect!
             </div>
           </motion.div>
@@ -181,7 +184,7 @@ function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "tween", duration: 0.3 }}>
-              <div className="m-4 flex min-h-[65vh] max-h-[calc(100dvh-2rem)] flex-col overflow-y-auto rounded-2xl border border-white/80 bg-white/80 p-4 shadow-lg backdrop-blur-xl">
+              <div className="m-4 flex min-h-[65vh] max-h-[calc(100dvh-2rem)] flex-col overflow-y-auto rounded-2xl border border-brand-amethyst-edge/70 bg-surface-card/95 p-4 shadow-lg backdrop-blur-xl">
                 <div className="flex w-full items-center justify-between">
                   <Brand />
 
@@ -191,12 +194,12 @@ function Navbar() {
                     className="relative flex h-8 w-8 items-center justify-center focus:outline-none"
                     aria-label="Close menu">
                     <span
-                      className={`absolute block h-0.5 w-6 bg-black transition-all duration-300 ${
+                      className={`absolute block h-0.5 w-6 bg-brand-cyan transition-all duration-300 ${
                         isMenuOpen ? "rotate-45" : ""
                       }`}
                     />
                     <span
-                      className={`absolute block h-0.5 w-6 bg-black transition-all duration-300 ${
+                      className={`absolute block h-0.5 w-6 bg-brand-cyan transition-all duration-300 ${
                         isMenuOpen ? "-rotate-45" : ""
                       }`}
                     />
@@ -216,7 +219,7 @@ function Navbar() {
                         className="flex w-full justify-center">
                         <a
                           href={link.href}
-                          className="text-lg font-medium transition-colors hover:text-indigo-600 sm:text-2xl">
+                          className="text-lg font-medium transition-colors hover:text-brand-cyan sm:text-2xl">
                           {link.name}
                         </a>
                       </motion.li>
@@ -226,7 +229,7 @@ function Navbar() {
                     <li className="flex w-full justify-center pt-4">
                       <a
                         href="#contact"
-                        className="relative flex items-center justify-center overflow-hidden rounded-3xl border border-indigo-800 px-6 py-2 text-base font-medium text-indigo-800 transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-indigo-700 before:duration-500 before:ease-out hover:shadow-xl hover:shadow-indigo-800/40 hover:before:h-56 hover:before:w-56 hover:text-white sm:px-8 sm:py-3 sm:text-lg"
+                        className="relative flex items-center justify-center overflow-hidden rounded-3xl border border-brand-cyan px-6 py-2 text-base font-medium text-brand-cyan transition-colors duration-300 hover:bg-brand-cyan hover:text-brand-black hover:shadow-xl hover:shadow-brand-cyan/30 sm:px-8 sm:py-3 sm:text-lg"
                         onClick={closeMenu}>
                         <span className="relative z-10">Let&apos;s talk</span>
                       </a>
@@ -237,7 +240,7 @@ function Navbar() {
             </motion.div>
 
             <motion.div
-              className="fixed top-[-20px] inset-0 z-30 h-[100vh] bg-black bg-opacity-10 backdrop-blur-sm lg:hidden"
+              className="fixed top-[-20px] inset-0 z-30 h-[100vh] bg-black bg-opacity-40 backdrop-blur-sm lg:hidden"
               onClick={closeMenu}
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.3 }}

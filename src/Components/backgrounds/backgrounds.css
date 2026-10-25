@@ -18,7 +18,7 @@
   width: 1px;
   height: 1px;
   position: absolute;
-  background: red;
+  background: var(--color-brand-cyan);
   box-shadow: 2vw 5vh 2px white, 10vw 8vh 2px white, 15vw 15vh 1px white,
     22vw 22vh 1px white, 28vw 12vh 2px white, 32vw 32vh 1px white,
     38vw 18vh 2px white, 42vw 35vh 1px white, 48vw 25vh 2px white,
@@ -39,7 +39,7 @@
   position: absolute;
   width: 100px;
   height: 2px;
-  background: linear-gradient(90deg, #b79ced, transparent);
+  background: linear-gradient(90deg, var(--color-brand-cyan), transparent);
   animation: shoot 3s infinite ease-in;
 }
 

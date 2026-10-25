@@ -48,17 +48,17 @@ export default function ProjectsCarousel({ projects = projectsList }) {
     <div
       id="projects"
       ref={containerRef}
-      className="relative w-full font-['Roboto'] scroll-mt-24"
+      className="projects-showcase relative w-full font-['Roboto'] scroll-mt-24"
       style={{ height: "300vh" }}
     >
       {/* Header */}
        <div className="pointer-events-none absolute inset-x-0 top-0 z-30 pt-10 sm:pt-14">
         <div className="site-container">
           <div className="max-w-xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-purple-700">
-              <span className="text-purple-400">Ideas</span> in Action
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+              <span className="text-brand-cyan">Ideas</span> in Action
             </h1>
-            <p className="text-gray-500 mb-6">
+            <p className="text-brand-muted mb-6">
               Transform your ideas into breathtaking visuals with cutting-edge technology.
             </p>
           </div>
@@ -75,7 +75,7 @@ export default function ProjectsCarousel({ projects = projectsList }) {
               href={project.link}
               target="_blank"
               rel="noreferrer"
-              className="absolute rounded-lg shadow-2xl bg-black/80 overflow-hidden cursor-pointer"
+              className="absolute rounded-lg shadow-2xl bg-surface-card/95 overflow-hidden cursor-pointer"
               style={{
                 width: "clamp(150px, 30vw, 300px)",
                 height: "clamp(200px, 40vw, 400px)",
@@ -87,7 +87,7 @@ export default function ProjectsCarousel({ projects = projectsList }) {
               }}
             >
               <div className="absolute inset-0">
-                <div className="absolute inset-0 bg-gradient-to-b from-purple-400/30 to-black/60 z-10" />
+                <div className="absolute inset-0 bg-gradient-to-b from-brand-amethyst/45 to-brand-black/75 z-10" />
                 <img
                   src={project.src}
                   alt={project.title}
@@ -107,10 +107,6 @@ export default function ProjectsCarousel({ projects = projectsList }) {
           ))}
         </div>
 
-        {/* Label */}
-        <div className="absolute bottom-0 left-8 text-white/40 -rotate-90 text-xs tracking-widest pointer-events-none">
-          Projects — Portfolio
-        </div>
       </div>
     </div>
   )

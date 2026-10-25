@@ -6,16 +6,16 @@ function TheTeam() {
   return (
     <section
       id="about"
-      className="scroll-mt-24 bg-[#faf5ff] py-16 md:py-20">
+      className="scroll-mt-24 theme-section--violet py-16 md:py-20">
       <div className="site-container">
         <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase text-purple-700">
+          <p className="text-sm font-semibold uppercase text-brand-cyan">
             About the team
           </p>
-          <h2 className="mt-3 text-3xl font-bold leading-tight text-slate-950 md:text-4xl">
+          <h2 className="mt-3 text-3xl font-bold leading-tight text-brand-white md:text-4xl">
             Real people behind the work
           </h2>
-          <p className="mt-3 text-base leading-relaxed text-slate-600">
+          <p className="mt-3 text-base leading-relaxed text-brand-muted">
             Skilled minds and dedicated hearts behind every success.
           </p>
         </div>

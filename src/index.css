@@ -1,5 +1,83 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-black: #050505;
+  --color-brand-amethyst: #3b0a6b;
+  --color-brand-cyan: #00e5ff;
+  --color-brand-cyan-hover: #33eaff;
+  --color-brand-white: #f4f3f8;
+  --color-brand-muted: #aaa5b5;
+  --color-brand-muted-deep: #8d8797;
+  --color-brand-text-soft: #d3cedb;
+  --color-brand-amethyst-border: #52267b;
+  --color-brand-amethyst-edge: #70469a;
+  --color-brand-lavender: #e9ddf5;
+  --color-brand-violet: #b79ced;
+  --color-brand-violet-stroke: #7161ef;
+  --color-brand-pure-white: #ffffff;
+  --color-brand-ink: #000000;
+  --color-surface-base: #07060b;
+  --color-surface-deep: #08060d;
+  --color-surface-card: #09070e;
+  --color-surface-raised: #10091a;
+  --color-surface-hero-mid: #0a0611;
+  --color-surface-hero-end: #12051f;
+  --color-surface-card-mix: #0a080f;
+}
+
+@layer base {
+  :root { color-scheme: dark; }
+  html, body, #root { min-height: 100%; }
+  :root {
+    --brand-black-rgb: 5 5 5;
+    --brand-amethyst-rgb: 59 10 107;
+    --brand-cyan-rgb: 0 229 255;
+    --brand-violet-edge-rgb: 116 70 164;
+    --brand-violet-glow-rgb: 177 133 225;
+  }
+  body { color: var(--color-brand-white); background: radial-gradient(ellipse at 4% 27%, rgb(var(--brand-amethyst-rgb) / .16), transparent 34%), radial-gradient(ellipse at 96% 63%, rgb(var(--brand-amethyst-rgb) / .14), transparent 38%), var(--color-brand-black); }
+  ::selection { background: var(--color-brand-cyan); color: var(--color-brand-black); }
+  :focus-visible { outline: 2px solid var(--color-brand-cyan); outline-offset: 3px; }
+  input, textarea, select { color-scheme: dark; }
+}
+
+.theme-hero {
+  background: radial-gradient(ellipse at 78% 42%, rgb(var(--brand-amethyst-rgb) / .65), transparent 46%), linear-gradient(112deg, var(--color-brand-black) 8%, var(--color-surface-hero-mid) 55%, var(--color-surface-hero-end) 100%);
+}
+.theme-section {
+  position: relative;
+  isolation: isolate;
+  background: radial-gradient(ellipse at 0% 50%, rgb(var(--brand-amethyst-rgb) / .35), transparent 38%), radial-gradient(ellipse at 100% 50%, rgb(var(--brand-amethyst-rgb) / .24), transparent 35%), var(--color-surface-base);
+  color: var(--color-brand-white);
+}
+.theme-section--violet { background: radial-gradient(ellipse at 8% 50%, rgb(var(--brand-amethyst-rgb) / .44), transparent 42%), linear-gradient(112deg, var(--color-surface-deep), var(--color-surface-raised) 48%, var(--color-surface-deep)); }
+.projects-showcase { background: radial-gradient(ellipse at 50% 45%, rgb(var(--brand-amethyst-rgb) / .32), transparent 68%), var(--color-brand-black); color: var(--color-brand-white); }
+.theme-card {
+  border-color: rgb(var(--brand-violet-edge-rgb) / .5) !important;
+  background: linear-gradient(145deg, rgb(var(--brand-amethyst-rgb) / .34), color-mix(in srgb, var(--color-surface-card-mix) 96%, transparent)) !important;
+  box-shadow: 0 14px 42px rgb(var(--brand-black-rgb) / .32), inset 0 1px rgb(var(--brand-violet-glow-rgb) / .08);
+}
+.testimonial-glass {
+  border-color: rgb(var(--brand-violet-edge-rgb) / .48) !important;
+  background: linear-gradient(145deg, rgb(var(--brand-amethyst-rgb) / .32), rgb(var(--brand-black-rgb) / .58)) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 14px 36px rgb(var(--brand-black-rgb) / .26), inset 0 1px rgb(255 255 255 / .12);
+}
+.contact-glass {
+  border-color: rgb(var(--brand-violet-edge-rgb) / .5) !important;
+  background: linear-gradient(135deg, rgb(var(--brand-amethyst-rgb) / .3), rgb(var(--brand-black-rgb) / .68)) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 16px 44px rgb(var(--brand-black-rgb) / .3), inset 0 1px rgb(255 255 255 / .1);
+}
+.contact-form-glass {
+  border-color: rgb(var(--brand-violet-edge-rgb) / .4) !important;
+  background: rgb(var(--brand-black-rgb) / .48) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
 @keyframes slideInUp {
     from {
         transform: translateY(100%);

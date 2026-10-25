@@ -107,28 +107,28 @@ function ContactUs() {
       transition={{ duration: 0.6, ease: "easeOut" }}>
       {/* Original contact-section heading */}
       <div className="mx-auto mb-10 max-w-3xl text-center">
-        <h3 className="text-3xl font-bold leading-snug text-purple-700 sm:text-4xl md:text-5xl">
-          <span className="text-purple-400">Say Hi!</span> and tell us about
+        <h3 className="text-3xl font-bold leading-snug text-brand-white sm:text-4xl md:text-5xl">
+          <span className="text-brand-cyan">Say Hi!</span> and tell us about
           your idea
         </h3>
 
-        <p className="mt-3 text-sm text-slate-600 sm:text-base">
+        <p className="mt-3 text-sm text-brand-muted sm:text-base">
           Have a project in mind? We&apos;d love to hear from you!
         </p>
       </div>
 
-      <div className="rounded-3xl border border-violet-100 bg-white p-5 shadow-[0_16px_60px_rgba(76,29,149,0.08)] sm:p-8 lg:p-12">
+      <div className="contact-glass rounded-3xl border theme-card p-5 shadow-[0_16px_60px_rgba(76,29,149,0.08)] sm:p-8 lg:p-12">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:gap-14">
           <div className="flex flex-col lg:py-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.12em] text-purple-700">
+            <p className="text-sm font-semibold uppercase tracking-[0.12em] text-brand-cyan">
               Get in touch
             </p>
 
-            <h2 className="mt-5 max-w-md text-4xl font-bold leading-tight text-slate-950 sm:text-5xl">
+            <h2 className="mt-5 max-w-md text-4xl font-bold leading-tight text-brand-white sm:text-5xl">
               Have a Project <br className="hidden sm:block" /> in Mind?
             </h2>
 
-            <p className="mt-6 max-w-md text-base leading-8 text-slate-600">
+            <p className="mt-6 max-w-md text-base leading-8 text-brand-muted">
               Tell us what you&apos;re looking to build and what you need.
               Let&apos;s start the conversation.
             </p>
@@ -136,17 +136,17 @@ function ContactUs() {
             <div className="mt-10 space-y-6">
               <a
                 href="mailto:Devfarmer1@gmail.com"
-                className="group flex items-start gap-4 text-slate-700"
+                className="group flex items-start gap-4 text-brand-muted"
               >
-                <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-violet-50 text-purple-700 transition group-hover:bg-purple-700 group-hover:text-white">
+                <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand-amethyst/55 text-brand-cyan transition group-hover:bg-brand-cyan group-hover:text-brand-black">
                   <Mail size={20} aria-hidden="true" />
                 </span>
 
                 <span>
-                  <span className="block text-sm font-semibold text-slate-950">
+                  <span className="block text-sm font-semibold text-brand-white">
                     Email Us
                   </span>
-                  <span className="mt-1 block text-sm text-slate-600 group-hover:text-purple-700">
+                  <span className="mt-1 block text-sm text-brand-muted group-hover:text-brand-cyan">
                     Devfarmer1@gmail.com
                   </span>
                 </span>
@@ -154,16 +154,16 @@ function ContactUs() {
 
               <a
                 href="tel:+919008899542"
-                className="group flex items-start gap-4 text-slate-700">
-                <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-violet-50 text-purple-700 transition group-hover:bg-purple-700 group-hover:text-white">
+                className="group flex items-start gap-4 text-brand-muted">
+                <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand-amethyst/55 text-brand-cyan transition group-hover:bg-brand-cyan group-hover:text-brand-black">
                   <Phone size={20} aria-hidden="true" />
                 </span>
 
                 <span>
-                  <span className="block text-sm font-semibold text-slate-950">
+                  <span className="block text-sm font-semibold text-brand-white">
                     Call Us
                   </span>
-                  <span className="mt-1 block text-sm text-slate-600 group-hover:text-purple-700">
+                  <span className="mt-1 block text-sm text-brand-muted group-hover:text-brand-cyan">
                     +91 9008899542
                   </span>
                 </span>
@@ -172,12 +172,12 @@ function ContactUs() {
           </div>
 
           <form
-            className="rounded-2xl border border-slate-200 bg-slate-50/60 p-5 sm:p-7"
+            className="contact-form-glass rounded-2xl border border-brand-amethyst-border/70 bg-surface-deep/75 p-5 sm:p-7"
             onSubmit={onFormSubmit}>
             <fieldset disabled={loading}>
-              <legend className="text-base font-semibold text-slate-950">
+              <legend className="text-base font-semibold text-brand-white">
                 What are you looking to build?{" "}
-                <span className="text-purple-700">*</span>
+                <span className="text-brand-cyan">*</span>
               </legend>
 
               {/* Compact service cards */}
@@ -193,8 +193,8 @@ function ContactUs() {
                       aria-pressed={isSelected}
                       onClick={() => toggleChip(label)}
                       className={`flex min-h-11 items-center justify-center gap-1.5 rounded-lg border px-2 py-2 text-center text-xs font-medium transition ${isSelected
-                          ? "border-purple-700 bg-purple-700 text-white shadow-sm"
-                          : "border-slate-200 bg-white text-slate-700 hover:border-purple-300 hover:bg-violet-50 hover:text-purple-800"
+                          ? "border-brand-cyan bg-brand-cyan text-brand-black shadow-[0_0_18px_rgb(var(--brand-cyan-rgb)/0.22)]"
+                          : "border-brand-amethyst-edge/70 bg-brand-white text-brand-amethyst hover:border-brand-cyan hover:bg-brand-lavender"
                         }`}>
                       <ServiceIcon
                         size={15}
@@ -208,15 +208,15 @@ function ContactUs() {
               </div>
 
               {interestError && (
-                <p className="mt-3 text-sm text-red-700" role="alert">
+                <p className="mt-3 text-sm text-red-300" role="alert">
                   {interestError}
                 </p>
               )}
 
               <label
                 htmlFor="companyName"
-                className="mt-8 block text-base font-semibold text-slate-950">
-                Company Name <span className="text-purple-700">*</span>
+                className="mt-8 block text-base font-semibold text-brand-white">
+                Company Name <span className="text-brand-cyan">*</span>
               </label>
 
               <input
@@ -226,15 +226,15 @@ function ContactUs() {
                 value={companyName}
                 onChange={(event) => setCompanyName(event.target.value)}
                 placeholder="Your company or website?"
-                className="mt-3 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-purple-600 focus:ring-4 focus:ring-violet-100"
+                className="mt-3 w-full rounded-xl border border-brand-amethyst-border/70 bg-surface-deep px-4 py-3 text-sm text-brand-white outline-none transition placeholder:text-brand-muted-deep focus:border-brand-cyan focus:ring-4 focus:ring-brand-cyan/20"
               />
 
               <div className="mt-6 grid gap-5 sm:grid-cols-2">
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-sm font-semibold text-slate-950">
-                    Your Name <span className="text-purple-700">*</span>
+                    className="block text-sm font-semibold text-brand-white">
+                    Your Name <span className="text-brand-cyan">*</span>
                   </label>
 
                   <input
@@ -244,15 +244,15 @@ function ContactUs() {
                     value={customerName}
                     onChange={(event) => setCustomerName(event.target.value)}
                     placeholder="Enter your full name"
-                    className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-purple-600 focus:ring-4 focus:ring-violet-100"
+                    className="mt-2 w-full rounded-xl border border-brand-amethyst-border/70 bg-surface-deep px-4 py-3 text-sm text-brand-white outline-none transition placeholder:text-brand-muted-deep focus:border-brand-cyan focus:ring-4 focus:ring-brand-cyan/20"
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-semibold text-slate-950">
-                    Work Email <span className="text-purple-700">*</span>
+                    className="block text-sm font-semibold text-brand-white">
+                    Work Email <span className="text-brand-cyan">*</span>
                   </label>
 
                   <input
@@ -262,7 +262,7 @@ function ContactUs() {
                     value={customerEmail}
                     onChange={(event) => setCustomerEmail(event.target.value)}
                     placeholder="Enter your work email"
-                    className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-purple-600 focus:ring-4 focus:ring-violet-100"
+                    className="mt-2 w-full rounded-xl border border-brand-amethyst-border/70 bg-surface-deep px-4 py-3 text-sm text-brand-white outline-none transition placeholder:text-brand-muted-deep focus:border-brand-cyan focus:ring-4 focus:ring-brand-cyan/20"
                   />
                 </div>
               </div>
@@ -277,7 +277,7 @@ function ContactUs() {
                     className="mt-6">
                     <label
                       htmlFor="others"
-                      className="block text-sm font-semibold text-slate-950">
+                      className="block text-sm font-semibold text-brand-white">
                       Tell us more about your idea ✨
                     </label>
 
@@ -287,7 +287,7 @@ function ContactUs() {
                       value={otherMessage}
                       onChange={(event) => setOtherMessage(event.target.value)}
                       placeholder="Write your idea or requirement here..."
-                      className="mt-2 w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-purple-600 focus:ring-4 focus:ring-violet-100"
+                      className="mt-2 w-full resize-none rounded-xl border border-brand-amethyst-border/70 bg-surface-deep px-4 py-3 text-sm leading-6 text-brand-white outline-none transition placeholder:text-brand-muted-deep focus:border-brand-cyan focus:ring-4 focus:ring-brand-cyan/20"
                     />
                   </motion.div>
                 )}
@@ -295,7 +295,7 @@ function ContactUs() {
 
               <button
                 type="submit"
-                className="mt-7 inline-flex items-center gap-2 rounded-xl bg-purple-700 px-5 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-violet-200 disabled:cursor-not-allowed disabled:opacity-60">
+                className="mt-7 inline-flex items-center gap-2 rounded-xl bg-brand-cyan px-5 py-3.5 text-sm font-semibold text-brand-black shadow-sm transition hover:bg-brand-cyan-hover focus:outline-none focus:ring-4 focus:ring-brand-cyan/25 disabled:cursor-not-allowed disabled:opacity-60">
                 {loading ? "Sending..." : "Start the Conversation"}
                 <ArrowRight size={17} aria-hidden="true" />
               </button>
