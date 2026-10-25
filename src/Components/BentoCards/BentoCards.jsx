@@ -38,7 +38,7 @@ export default function BentoCards() {
   return (
     <section
       id="skills"
-      className="section-padding bg-transparent from-white to-[#f5f3ff]"
+      className="section-padding theme-section--violet"
     >
       <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
         {/* Section Intro */}
@@ -49,14 +49,14 @@ export default function BentoCards() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h2 className="text-base font-semibold text-purple-400">
+          <h2 className="text-base font-semibold text-brand-cyan">
             💡 Built by teamwork
           </h2>
-          <p className="mt-2 text-4xl font-semibold tracking-tight text-purple-800 sm:text-5xl">
+          <p className="mt-2 text-4xl font-semibold tracking-tight text-brand-white sm:text-5xl">
             Skills that power{" "}
-            <span className="text-purple-400">great products</span>
+            <span className="text-brand-cyan">great products</span>
           </p>
-          <p className="mx-auto mt-4 max-w-xl text-gray-600 text-base">
+          <p className="mx-auto mt-4 max-w-xl text-brand-muted text-base">
             Every card below highlights a principle we live by when building
             modern, scalable, and user-friendly digital products.
           </p>
@@ -75,19 +75,19 @@ export default function BentoCards() {
             variants={cardVariant}
             className="relative lg:row-span-2 hover:scale-[1.02] transition-transform duration-300"
           >
-            <div className="absolute inset-px rounded-2xl bg-[#7161ef]/10 backdrop-blur-lg border border-[#7161ef]/30 shadow-2xl" />
+            <div className="absolute inset-px rounded-2xl bg-brand-amethyst/35 backdrop-blur-lg border border-brand-amethyst-edge/60 shadow-2xl" />
             <div className="relative flex h-full flex-col overflow-hidden rounded-2xl">
               <div className="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
-                <p className="mt-2 text-xl font-semibold text-[#1a1a1a] max-lg:text-center">
+                <p className="mt-2 text-xl font-semibold text-brand-white max-lg:text-center">
                   📱 Seamless Across Devices
                 </p>
-                <p className="mt-2 max-w-lg text-sm text-gray-600 max-lg:text-center">
+                <p className="mt-2 max-w-lg text-sm text-brand-muted max-lg:text-center">
                   Our solutions are built mobile-first and responsive by default,
                   ensuring a flawless experience on any screen size.
                 </p>
               </div>
               <div className="relative min-h-120 w-full grow max-lg:mx-auto max-lg:max-w-sm">
-                <div className="absolute inset-x-10 top-10 bottom-0 overflow-hidden rounded-t-2xl border border-[#7161ef]/30 bg-[#7161ef]/10 backdrop-blur-md">
+                <div className="absolute inset-x-10 top-10 bottom-0 overflow-hidden rounded-t-2xl border border-brand-amethyst-edge/60 bg-brand-amethyst/35 backdrop-blur-md">
                   <img
                     alt="Responsive design preview"
                     src={responsiveAccrossDeevicesImg}
@@ -104,13 +104,13 @@ export default function BentoCards() {
             variants={cardVariant}
             className="relative max-lg:row-start-1 hover:scale-[1.02] transition-transform duration-300"
           >
-            <div className="absolute inset-px rounded-2xl bg-[#7161ef]/10 backdrop-blur-lg border border-[#7161ef]/30 shadow-2xl" />
+            <div className="absolute inset-px rounded-2xl bg-brand-amethyst/35 backdrop-blur-lg border border-brand-amethyst-edge/60 shadow-2xl" />
             <div className="relative flex h-full flex-col overflow-hidden rounded-2xl">
               <div className="px-8 pt-8 sm:px-10 sm:pt-10">
-                <p className="mt-2 text-xl font-semibold text-[#1a1a1a] max-lg:text-center">
+                <p className="mt-2 text-xl font-semibold text-brand-white max-lg:text-center">
                   ⚡ Blazing Fast Performance
                 </p>
-                <p className="mt-2 max-w-lg text-sm text-gray-600 max-lg:text-center">
+                <p className="mt-2 max-w-lg text-sm text-brand-muted max-lg:text-center">
                   We optimize every layer — from backend APIs to frontend
                   rendering — so your product runs smooth, even at scale.
                 </p>
@@ -131,13 +131,13 @@ export default function BentoCards() {
             variants={cardVariant}
             className="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2 hover:scale-[1.02] transition-transform duration-300"
           >
-            <div className="absolute inset-px rounded-2xl bg-[#7161ef]/10 backdrop-blur-lg border border-[#7161ef]/30 shadow-2xl" />
+            <div className="absolute inset-px rounded-2xl bg-brand-amethyst/35 backdrop-blur-lg border border-brand-amethyst-edge/60 shadow-2xl" />
             <div className="relative flex h-full flex-col overflow-hidden rounded-2xl">
               <div className="px-8 pt-8 sm:px-10 sm:pt-10">
-                <p className="mt-2 text-xl font-semibold text-[#1a1a1a] max-lg:text-center">
+                <p className="mt-2 text-xl font-semibold text-brand-white max-lg:text-center">
                   🔒 Security You Can Trust
                 </p>
-                <p className="mt-2 max-w-lg text-sm text-gray-600 max-lg:text-center">
+                <p className="mt-2 max-w-lg text-sm text-brand-muted max-lg:text-center">
                   With enterprise-grade security, encrypted data flows, and
                   robust authentication, we keep your users and business safe.
                 </p>
@@ -158,30 +158,30 @@ export default function BentoCards() {
             variants={cardVariant}
             className="relative lg:row-span-2 hover:scale-[1.02] transition-transform duration-300"
           >
-            <div className="absolute inset-px rounded-2xl bg-[#7161ef]/10 backdrop-blur-lg border border-[#7161ef]/30 shadow-2xl" />
+            <div className="absolute inset-px rounded-2xl bg-brand-amethyst/35 backdrop-blur-lg border border-brand-amethyst-edge/60 shadow-2xl" />
             <div className="relative flex h-full flex-col overflow-hidden rounded-2xl">
               <div className="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
-                <p className="mt-2 text-xl font-semibold text-[#1a1a1a] max-lg:text-center">
+                <p className="mt-2 text-xl font-semibold text-brand-white max-lg:text-center">
                   🌱 Built for Growth
                 </p>
-                <p className="mt-2 max-w-lg text-sm text-gray-600 max-lg:text-center">
+                <p className="mt-2 max-w-lg text-sm text-brand-muted max-lg:text-center">
                   Our modular APIs and integrations give you the flexibility to
                   scale, adapt, and connect with the tools you already love.
                 </p>
               </div>
               <div className="relative min-h-120 w-full grow">
-                <div className="absolute top-10 right-0 bottom-0 left-10 overflow-hidden rounded-tl-xl bg-[#7161ef]/10 backdrop-blur-md border border-[#7161ef]/30">
-                  <div className="flex bg-white/30 backdrop-blur-sm border-b border-[#7161ef]/30">
-                    <div className="-mb-px flex text-sm font-medium text-gray-700">
-                      <div className="border-r border-[#7161ef]/30 bg-[#7161ef]/20 px-4 py-2 text-[#1a1a1a]">
+                <div className="absolute top-10 right-0 bottom-0 left-10 overflow-hidden rounded-tl-xl bg-brand-amethyst/35 backdrop-blur-md border border-brand-amethyst-edge/60">
+                  <div className="flex bg-brand-amethyst/30 backdrop-blur-sm border-b border-brand-amethyst-edge/60">
+                    <div className="-mb-px flex text-sm font-medium text-brand-text-soft">
+                      <div className="border-r border-brand-amethyst-edge/60 bg-brand-amethyst/55 px-4 py-2 text-brand-white">
                         NotificationSetting.jsx
                       </div>
-                      <div className="border-r border-[#7161ef]/30 px-4 py-2">
+                      <div className="border-r border-brand-amethyst-edge/60 px-4 py-2">
                         App.jsx
                       </div>
                     </div>
                   </div>
-                  <div className="px-6 pt-6 pb-14 text-sm text-gray-600"></div>
+                  <div className="px-6 pt-6 pb-14 text-sm text-brand-muted"></div>
                 </div>
               </div>
             </div>

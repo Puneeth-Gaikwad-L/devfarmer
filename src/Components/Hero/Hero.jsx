@@ -1,71 +1,53 @@
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
 import AnimatedHeroText from "../AnimatedHeroText/AnimatedHeroText";
-import StarBackground from "../backgrounds/StarBackground";
 
 function Hero() {
-  const sectionRef = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 4.5]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-
-  const headingVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  };
-
   return (
-    <StarBackground>
-      <section
-        ref={sectionRef} // attach ref here
-        id="home"
-        className="relative w-full h-dvh flex items-center justify-center flex-col overflow-hidden">
-        {/* Hero Image with scroll zoom + fade */}
-        <motion.img
-          src="/macbook.png"
-          alt="Hero Background"
-          className="
-  absolute top-1/2 left-1/2 
-  -translate-x-1/2 -translate-y-1/2
-  w-[95%] sm:w-[100%] md:w-[100%] lg:w-[100%] 
-  h-auto max-h-[90vh]
-  object-contain z-0"
-          style={{ scale, opacity }}
-        />
-
-        {/* Hero Content */}
-        <div
-          className="
-    relative z-10 flex flex-col items-center justify-center
-    px-4 sm:px-6 md:px-8 lg:px-0
-    max-w-[80%] sm:max-w-[40%] lg:max-w-[50%]
-    custom-width
-  ">
-          <AnimatedHeroText />
-
-          <motion.h1
-            className="m-0 text-lg sm:text-xl md:text-3xl lg:text-4xl xl:text-2xl 
-                       text-center leading-snug sm:leading-normal md:leading-normal 
-                       px-2 sm:px-4 md:px-6 lg:px-0"
-            initial="hidden"
-            animate="visible"
-            variants={headingVariants}>
-            Brands Through Thoughtful{" "}
-            <span className="text-purple-800 font-semibold">Software</span>{" "}
-            Solutions
-          </motion.h1>
+    <section
+      id="home"
+      className="scroll-mt-24 theme-hero text-white pb-16 pt-32 lg:min-h-screen lg:pb-24 ">
+      <div className="site-container grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase text-brand-cyan">
+            Web, software, and digital products
+          </p>
+          <h1 className="mt-5 text-3xl font-bold leading-tight text-brand-white md:text-4xl">
+            We build digital products that move businesses forward.
+          </h1>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-brand-muted md:text-lg">
+            Websites, SaaS, software, and digital experiences designed around real
+            business problems.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-5">
+            <a
+              href="#contact"
+              className="inline-flex min-h-12 items-center justify-center rounded-md bg-brand-cyan px-6 py-3 font-semibold text-brand-black transition-colors hover:bg-brand-cyan-hover">
+              Start a project
+            </a>
+            <a
+              href="#projects"
+              className="font-semibold text-brand-cyan underline decoration-2 underline-offset-4 hover:text-brand-white">
+              View our work
+            </a>
+          </div>
         </div>
-      </section>
-    </StarBackground>
+
+        <div className="relative mx-auto w-full max-w-3xl">
+          <img
+            src="/macbook.png"
+            alt="Website and software preview on a laptop"
+            className="mx-auto h-auto w-full object-contain"
+            fetchPriority="high"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
+            <div className="w-[58%]">
+              <AnimatedHeroText />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 

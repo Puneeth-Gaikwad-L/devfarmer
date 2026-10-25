@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Brand() {
+function Brand({ width = 150 }) {
   return (
     <div>
-      <img src="/brand.png" alt="brand" width="150"/>
+      <img src="/brand.png" alt="brand" width={width}/>
     </div>
   )
 }

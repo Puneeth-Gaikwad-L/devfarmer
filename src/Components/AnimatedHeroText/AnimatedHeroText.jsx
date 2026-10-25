@@ -1,25 +1,44 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { animate, svg, stagger } from "animejs";
 
 function AnimatedHeroText() {
-  useEffect(() => {
-     // Target only path elements with class "line"
-    const paths = document.querySelectorAll("path.line");
+  const svgRef = useRef(null);
 
-    paths.forEach((path) => {
-      const length = path.getTotalLength();
-      path.setAttribute("stroke-dasharray", length);
-      path.setAttribute("stroke-dashoffset", length);
+  useEffect(() => {
+    const svgElement = svgRef.current;
+    if (!svgElement) return;
+
+    const paths = Array.from(svgElement.querySelectorAll("path.line"));
+    if (paths.length === 0) return;
+
+    const traces = paths.map((path) => {
+      const trace = path.cloneNode(false);
+      trace.setAttribute("class", "trace");
+      trace.setAttribute("fill", "none");
+      trace.setAttribute("stroke", "var(--color-brand-cyan)");
+      trace.setAttribute("stroke-width", "3");
+      trace.setAttribute("stroke-linecap", "round");
+      trace.setAttribute("stroke-linejoin", "round");
+      path.parentNode.appendChild(trace);
+
+      const length = trace.getTotalLength();
+      trace.setAttribute("stroke-dasharray", length);
+      trace.setAttribute("stroke-dashoffset", length);
+      return trace;
     });
-    animate(svg.createDrawable(".line"), {
+    const animation = animate(svg.createDrawable(traces), {
       draw: ["0 0", "0 1", "1 1"],
-      // ease: "inOutQuad",
-      easing: 'linear',
+      easing: "linear",
       duration: 15000,
       endDelay: 2000,
       delay: stagger(50),
       loop: true,
     });
+
+    return () => {
+      animation.cancel();
+      traces.forEach((trace) => trace.remove());
+    };
   }, []);
 
   return (
@@ -32,12 +51,13 @@ function AnimatedHeroText() {
         viewBox="150 270 1130 220"
         height="300"
         preserveAspectRatio="xMidYMid meet"
+        ref={svgRef}
         version="1.2"
         className="w-full max-w-[90vw] sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[1200px] h-auto"
       >
         <defs />
-        <g id="ce78ff4498" stroke="#7161ef" strokeWidth="2" fill="none">
-          <g className="line" style={{ fill: "#b79ced", fillOpacity: "0.5" }}>
+        <g id="ce78ff4498" stroke="var(--color-brand-violet)" strokeWidth="2" fill="none">
+          <g className="line" style={{ fill: "var(--color-brand-violet)", fillOpacity: "0.5" }}>
             <g transform="translate(162.400685, 483.292906)">
               <path
                 className="line"
@@ -45,7 +65,7 @@ function AnimatedHeroText() {
               />
             </g>
           </g>
-          <g className="line" style={{ fill: "#b79ced", fillOpacity: "0.5" }}>
+          <g className="line" style={{ fill: "var(--color-brand-violet)", fillOpacity: "0.5" }}>
             <g transform="translate(278.047793, 483.292906)">
               <path
                 className="line"
@@ -53,7 +73,7 @@ function AnimatedHeroText() {
               />
             </g>
           </g>
-          <g className="line" style={{ fill: "#b79ced", fillOpacity: "0.5" }}>
+          <g className="line" style={{ fill: "var(--color-brand-violet)", fillOpacity: "0.5" }}>
             <g transform="translate(381.192437, 483.292906)">
               <path
                 className="line"
@@ -61,7 +81,7 @@ function AnimatedHeroText() {
               />
             </g>
           </g>
-          <g className="line" style={{ fill: "#b79ced", fillOpacity: "0.5" }}>
+          <g className="line" style={{ fill: "var(--color-brand-violet)", fillOpacity: "0.5" }}>
             <g transform="translate(496.839533, 483.292906)">
               <path
                 className="line"
@@ -69,7 +89,7 @@ function AnimatedHeroText() {
               />
             </g>
           </g>
-          <g className="line" style={{ fill: "#b79ced", fillOpacity: "0.5" }}>
+          <g className="line" style={{ fill: "var(--color-brand-violet)", fillOpacity: "0.5" }}>
             <g transform="translate(648.170588, 483.292906)">
               <path
                 className="line"
@@ -77,7 +97,7 @@ function AnimatedHeroText() {
               />
             </g>
           </g>
-          <g className="line" style={{ fill: "#b79ced", fillOpacity: "0.5" }}>
+          <g className="line" style={{ fill: "var(--color-brand-violet)", fillOpacity: "0.5" }}>
             <g transform="translate(797.157458, 483.292906)">
               <path
                 className="line"
@@ -85,7 +105,7 @@ function AnimatedHeroText() {
               />
             </g>
           </g>
-          <g className="line" style={{ fill: "#b79ced", fillOpacity: "0.5" }}>
+          <g className="line" style={{ fill: "var(--color-brand-violet)", fillOpacity: "0.5" }}>
             <g transform="translate(914.10687, 483.292906)">
               <path
                 className="line"
@@ -93,7 +113,7 @@ function AnimatedHeroText() {
               />
             </g>
           </g>
-          <g className="line" style={{ fill: "#b79ced", fillOpacity: "0.5" }}>
+          <g className="line" style={{ fill: "var(--color-brand-violet)", fillOpacity: "0.5" }}>
             <g transform="translate(969.325571, 483.292906)">
               <path
                 className="line"
@@ -101,7 +121,7 @@ function AnimatedHeroText() {
               />
             </g>
           </g>
-          <g className="line" style={{ fill: "#b79ced", fillOpacity: "0.5" }}>
+          <g className="line" style={{ fill: "var(--color-brand-violet)", fillOpacity: "0.5" }}>
             <g transform="translate(1123.521791, 483.292906)">
               <path
                 className="line"

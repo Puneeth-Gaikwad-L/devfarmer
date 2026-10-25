@@ -31,7 +31,7 @@ function App() {
     <>
       <div
         ref={cursorRef}
-        className="pointer-events-none fixed top-0 left-0 w-4 h-4 bg-indigo-800 rounded-full z-50 hidden md:block will-change-transform"
+        className="pointer-events-none fixed top-0 left-0 w-4 h-4 bg-brand-cyan rounded-full z-50 hidden md:block will-change-transform"
         style={{
           // Remove CSS transitions and use transform3d for better performance
           transform: "translate3d(0, 0, 0)",

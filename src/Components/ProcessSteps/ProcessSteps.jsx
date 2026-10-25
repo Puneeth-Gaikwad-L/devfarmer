@@ -1,6 +1,3 @@
-import { motion, useAnimation, useInView } from "framer-motion";
-import { useEffect, useRef } from "react";
-
 const steps = [
   { title: "Discovery", desc: "We understand your goals and vision." },
   { title: "Planning", desc: "We outline the roadmap and define milestones." },
@@ -9,89 +6,38 @@ const steps = [
   { title: "Launch", desc: "We deploy, test, and ensure everything runs flawlessly." },
 ];
 
-export default function ProcessSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const controls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) controls.start("visible");
-  }, [isInView]);
-
-  const stepVariants = {
-    hidden: { opacity: 0, y: 60, x: 40 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      x: 0,
-      transition: { delay: i * 0.25, duration: 0.7, ease: "easeOut" },
-    }),
-  };
-
+export default function ProcessSteps() {
   return (
-    <section
-      ref={ref}
-      className="relative flex flex-col items-center justify-center min-h-screen bg-white overflow-hidden py-20"
-    >
-      {isInView && (
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: steps.length * 0.25 }}
-          className="mt-24 text-center px-4"
-        >
-          <h3 className="m-0 text-4xl sm:text-5xl md:text-7xl font-bold text-purple-900">
-            <span className="text-purple-400">How We Bring</span>
-            <br />
-            Ideas to Life!
-          </h3>
-          <p className="text-purple-700 mt-2 max-w-xl mx-auto">
-            A transparent, step-by-step path from idea to launch — where every
-            phase adds clarity and creativity.
+    <section id="process" className="scroll-mt-24 theme-section py-20 md:py-28">
+      <div className="site-container">
+        <div className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase text-brand-cyan">
+            How we do it
           </p>
-        </motion.div>
-      )}
+          <h2 className="mt-3 text-3xl font-bold text-brand-white sm:text-4xl">
+            A clear path from first conversation to launch
+          </h2>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-brand-muted">
+            Each stage keeps the work focused, visible, and connected to your goals.
+          </p>
+        </div>
 
-      {/* Steps go from right to left now */}
-      <motion.div
-        className="relative w-full max-w-6xl h-[65vh] flex justify-start items-center"
-        initial="hidden"
-        animate={controls}
-      >
-        {steps.map((step, index) => (
-          <motion.div
-            key={index}
-            custom={index}
-            variants={stepVariants}
-            initial="hidden"
-            animate={controls}
-            className="absolute transition-all duration-300"
-            style={{
-              bottom: `${index * 90}px`,
-              right: `calc(30% - 150px + ${index * 120}px)`, // flipped direction
-            }}
-          >
-            <motion.div
-              className="group backdrop-blur-lg bg-gradient-to-tr from-purple-700/40 to-purple-400/20 border border-purple-400/40 shadow-lg rounded-2xl px-8 py-4 w-[240px] md:w-[280px] text-center text-purple-900 cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-xl"
-              whileHover={{ y: -10 }}
-            >
-              <h3 className="font-semibold text-lg mb-1 transition-all duration-300">
+        <ol className="mt-12 grid border-t border-brand-amethyst-border/60 md:grid-cols-2 xl:grid-cols-5">
+          {steps.map((step, index) => (
+            <li key={step.title} className="border-b border-brand-amethyst-border/60 py-6 pr-6">
+              <p className="text-sm font-semibold text-brand-cyan">
+                {String(index + 1).padStart(2, "0")}
+              </p>
+              <h3 className="mt-4 text-lg font-semibold text-brand-white">
                 {step.title}
               </h3>
-
-              {/* Hidden content - visible on hover */}
-              <motion.p
-                initial={{ opacity: 0, height: 0 }}
-                whileHover={{ opacity: 1, height: "auto" }}
-                transition={{ duration: 0.4 }}
-                className="opacity-0 group-hover:opacity-100 group-hover:mt-2 text-sm transition-all duration-500 overflow-hidden"
-              >
+              <p className="mt-2 text-sm leading-relaxed text-brand-muted">
                 {step.desc}
-              </motion.p>
-            </motion.div>
-          </motion.div>
-        ))}
-      </motion.div>
+              </p>
+            </li>
+          ))}
+        </ol>
+      </div>
     </section>
   );
 }
