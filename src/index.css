@@ -44,13 +44,46 @@
 .theme-hero {
   background: radial-gradient(ellipse at 78% 42%, rgb(var(--brand-amethyst-rgb) / .65), transparent 46%), linear-gradient(112deg, var(--color-brand-black) 8%, var(--color-surface-hero-mid) 55%, var(--color-surface-hero-end) 100%);
 }
-.theme-section {
+/* Page sections: each section's glow lives on a ::before layer that fades out at the section's
+   top and bottom, so neighbouring sections blend into one continuous background (no hard edge). */
+.theme-section,
+.theme-section--violet {
   position: relative;
   isolation: isolate;
-  background: radial-gradient(ellipse at 0% 50%, rgb(var(--brand-amethyst-rgb) / .35), transparent 38%), radial-gradient(ellipse at 100% 50%, rgb(var(--brand-amethyst-rgb) / .24), transparent 35%), var(--color-surface-base);
+  background: transparent;
   color: var(--color-brand-white);
 }
-.theme-section--violet { background: radial-gradient(ellipse at 8% 50%, rgb(var(--brand-amethyst-rgb) / .44), transparent 42%), linear-gradient(112deg, var(--color-surface-deep), var(--color-surface-raised) 48%, var(--color-surface-deep)); }
+.theme-section::before,
+.theme-section--violet::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 28%, #000 72%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 28%, #000 72%, transparent);
+}
+.theme-section::before {
+  background: radial-gradient(ellipse at 0% 50%, rgb(var(--brand-amethyst-rgb) / .35), transparent 38%), radial-gradient(ellipse at 100% 50%, rgb(var(--brand-amethyst-rgb) / .24), transparent 35%);
+}
+.theme-section--violet::before {
+  background: radial-gradient(ellipse at 8% 50%, rgb(var(--brand-amethyst-rgb) / .44), transparent 42%);
+}
+/* Hero section: same look as .theme-hero, but fading out at the bottom into the page */
+.hero-bg {
+  position: relative;
+  isolation: isolate;
+}
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 78% 42%, rgb(var(--brand-amethyst-rgb) / .65), transparent 46%), linear-gradient(112deg, var(--color-brand-black) 8%, var(--color-surface-hero-mid) 55%, var(--color-surface-hero-end) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 76%, transparent);
+  mask-image: linear-gradient(to bottom, #000 76%, transparent);
+}
 .projects-showcase { background: radial-gradient(ellipse at 50% 45%, rgb(var(--brand-amethyst-rgb) / .32), transparent 68%), var(--color-brand-black); color: var(--color-brand-white); }
 .theme-card {
   border-color: rgb(var(--brand-violet-edge-rgb) / .5) !important;
@@ -92,3 +125,104 @@
 body {
   background: linear-gradient(to bottom, #ffffff, #eef2ff, #667eea);
 } */
+
+/* Curtain raiser "hello": ellipses start hidden and are faded in by CurtainRaiser */
+.hello-svg svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.hello-svg ellipse {
+  opacity: 0;
+}
+
+/* Client strip marquee */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* Service cards: a rounded rectangle with a rounded-square bite out of the bottom-right corner
+   (where the arrow button sits). Pure CSS, no JavaScript measuring, any card size.
+   The bite is built from overlapping pieces (rect P, rect Q, quarter-disc S, and two mouth
+   fillets F1/F2). They are UNIONed, then SUBTRACTED from an opaque base. Pieces overlap by 1px and
+   overshoot the card edge by 2px, so fractional card widths can't leave hairline seams.
+   --n bite size, --i concave inner radius, --f rounding where the bite meets the edges. */
+.notch-card {
+  --n: 88px;
+  --i: 28px;
+  --f: 22px;
+  --mask-layers: linear-gradient(#000, #000),
+    linear-gradient(#000, #000),
+    linear-gradient(#000, #000),
+    radial-gradient(circle at 100% 100%, #000 calc(var(--i) - 0.75px), transparent calc(var(--i) + 0.25px)),
+    radial-gradient(circle at 0 0, transparent calc(var(--f) - 0.75px), #000 calc(var(--f) + 0.25px)),
+    radial-gradient(circle at 0 0, transparent calc(var(--f) - 0.75px), #000 calc(var(--f) + 0.25px));
+  --mask-sizes: 100% 100%,
+    calc(var(--n) - var(--i) + 3px) calc(var(--n) + 2px),
+    calc(var(--i) + 1px) calc(var(--n) - var(--i) + 3px),
+    var(--i) var(--i),
+    calc(var(--f) + 2px) calc(var(--f) + 1px),
+    calc(var(--f) + 1px) calc(var(--f) + 2px);
+  --mask-positions: 0 0,
+    right -2px bottom -2px,
+    right calc(var(--n) - var(--i) - 1px) bottom -2px,
+    right calc(var(--n) - var(--i)) bottom calc(var(--n) - var(--i)),
+    right -2px bottom calc(var(--n) - 1px),
+    right calc(var(--n) - 1px) bottom -2px;
+  -webkit-mask-image: var(--mask-layers);
+  mask-image: var(--mask-layers);
+  -webkit-mask-size: var(--mask-sizes);
+  mask-size: var(--mask-sizes);
+  -webkit-mask-position: var(--mask-positions);
+  mask-position: var(--mask-positions);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  /* base (top layer) minus the union of the pieces beneath it */
+  -webkit-mask-composite: source-out, source-over, source-over, source-over, source-over, source-over;
+  mask-composite: subtract, add, add, add, add, add;
+}
+
+/* Process timeline: outlined numerals (like the ELEVATING wordmark) that fill with the brand
+   gradient, sweeping left to right, once the glowing line reaches their step. */
+.outline-numeral {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgb(183 156 237 / 0.5);
+  background-image: linear-gradient(100deg, var(--color-brand-violet), var(--color-brand-cyan));
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: background-size 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    -webkit-text-stroke-color 0.6s;
+}
+.outline-numeral[data-lit="true"] {
+  background-size: 100% 100%;
+  -webkit-text-stroke-color: rgb(0 229 255 / 0.9);
+}
+
+/* Custom cursor (mouse devices only; the class is added by <Cursor/>). Form fields keep the
+   normal text cursor. */
+html.custom-cursor,
+html.custom-cursor * {
+  cursor: none !important;
+}
+html.custom-cursor input,
+html.custom-cursor textarea,
+html.custom-cursor select {
+  cursor: text !important;
+}

@@ -1,10 +1,21 @@
 import React, { useEffect, useRef } from "react";
 import { animate, svg, stagger } from "animejs";
 
-function AnimatedHeroText() {
+// All props are optional and default to the original look:
+// - start: hold the animation until something else (e.g. the curtain) is done
+// - className / svgClassName: override sizing/layout
+// - traceWidth / outlineWidth: line widths in SVG units (thinner when the wordmark is scaled up)
+function AnimatedHeroText({
+  start = true,
+  className,
+  svgClassName,
+  traceWidth = 3,
+  outlineWidth = 2,
+}) {
   const svgRef = useRef(null);
 
   useEffect(() => {
+    if (!start) return;
     const svgElement = svgRef.current;
     if (!svgElement) return;
 
@@ -16,7 +27,7 @@ function AnimatedHeroText() {
       trace.setAttribute("class", "trace");
       trace.setAttribute("fill", "none");
       trace.setAttribute("stroke", "var(--color-brand-cyan)");
-      trace.setAttribute("stroke-width", "3");
+      trace.setAttribute("stroke-width", traceWidth);
       trace.setAttribute("stroke-linecap", "round");
       trace.setAttribute("stroke-linejoin", "round");
       path.parentNode.appendChild(trace);
@@ -39,10 +50,15 @@ function AnimatedHeroText() {
       animation.cancel();
       traces.forEach((trace) => trace.remove());
     };
-  }, []);
+  }, [start, traceWidth]);
 
   return (
-    <div className="flex justify-center items-center w-full overflow-hidden px-2 sm:px-4 md:px-6 lg:px-0">
+    <div
+      className={
+        className ??
+        "flex justify-center items-center w-full overflow-hidden px-2 sm:px-4 md:px-6 lg:px-0"
+      }
+      style={{ opacity: start ? 1 : 0 }}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -53,10 +69,17 @@ function AnimatedHeroText() {
         preserveAspectRatio="xMidYMid meet"
         ref={svgRef}
         version="1.2"
-        className="w-full max-w-[90vw] sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[1200px] h-auto"
+        className={
+          svgClassName ??
+          "w-full max-w-[90vw] sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[1200px] h-auto"
+        }
       >
         <defs />
-        <g id="ce78ff4498" stroke="var(--color-brand-violet)" strokeWidth="2" fill="none">
+        <g
+          id="ce78ff4498"
+          stroke="var(--color-brand-violet)"
+          strokeWidth={outlineWidth}
+          fill="none">
           <g className="line" style={{ fill: "var(--color-brand-violet)", fillOpacity: "0.5" }}>
             <g transform="translate(162.400685, 483.292906)">
               <path

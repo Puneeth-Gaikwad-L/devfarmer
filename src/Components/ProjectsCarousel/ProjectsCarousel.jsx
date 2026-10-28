@@ -1,113 +1,136 @@
-import { useRef, useLayoutEffect } from "react"
-import gsap from "gsap"
-import ScrollTrigger from "gsap/ScrollTrigger"
-import { projects as projectsList } from "../../util/util"
+import { useRef } from "react";
+import { ArrowUpRight } from "lucide-react";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import BrowserBar from "../Common/BrowserBar/BrowserBar";
+import SectionHeading from "../Common/SectionHeading/SectionHeading";
+import { projects as projectsList } from "../../util/util";
 
-gsap.registerPlugin(ScrollTrigger)
-
-export default function ProjectsCarousel({ projects = projectsList }) {
-  const containerRef = useRef(null)
-  const itemsRef = useRef([])
-
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const total = projects.length
-
-      itemsRef.current.forEach((el, index) => {
-        gsap.fromTo(
-          el,
-          {
-            xPercent: index * 70,
-            yPercent: index * 25,
-            rotate: index * 18,
-            opacity: 1 - index * 0.4,
-            zIndex: total - index
-          },
-          {
-            xPercent: -(total - index - 1) * 70,
-            yPercent: -(total - index - 1) * 25,
-            rotate: -(total - index - 1) * 18,
-            opacity: 1,
-            zIndex: total,
-            ease: "none",
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top top",
-              end: "bottom bottom",
-              scrub: 1
-            }
-          }
-        )
-      })
-    }, containerRef)
-
-    return () => ctx.revert()
-  }, [projects])
+// Layered, scroll-linked background word that fades/scales in as its card comes to the front
+function BackgroundText({ text, index, progress }) {
+  const distance = useTransform(progress, (p) => p - index);
+  const opacity = useTransform(distance, [-0.5, 0, 0.5], [0, 1, 0]);
+  const scaleY = useTransform(distance, [-0.5, 0, 0.5], [0, 1, 0]);
+  const repeated = Array(4).fill(text).join(" ");
 
   return (
-    <div
-      id="projects"
-      ref={containerRef}
-      className="projects-showcase relative w-full font-['Roboto'] scroll-mt-24"
-      style={{ height: "300vh" }}
-    >
-      {/* Header */}
-       <div className="pointer-events-none absolute inset-x-0 top-0 z-30 pt-10 sm:pt-14">
-        <div className="site-container">
-          <div className="max-w-xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-              <span className="text-brand-cyan">Ideas</span> in Action
-            </h1>
-            <p className="text-brand-muted mb-6">
-              Transform your ideas into breathtaking visuals with cutting-edge technology.
-            </p>
+    <motion.div
+      style={{ opacity, scaleY, y: "-50%", x: "-50%" }}
+      className="absolute top-1/2 left-1/2 overflow-hidden w-[200vw] pointer-events-none">
+      <motion.div
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{ ease: "linear", duration: 30, repeat: Infinity }}
+        className="flex whitespace-nowrap text-[max(4rem,7.5vw)] font-black uppercase tracking-tighter mix-blend-overlay leading-none text-white/20">
+        <span>{repeated}</span>
+        <span>{repeated}</span>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+// One face of the rotating 3D stack. Every card sits on its own 180deg step of rotateX.
+function ProjectCard({ project, index, progress }) {
+  const visibility = useTransform(progress, (p) =>
+    Math.abs(p - index) <= 1 ? "visible" : "hidden"
+  );
+
+  return (
+    <motion.div
+      style={{ rotateX: index * 180, visibility }}
+      className="absolute inset-0 flex h-full w-full flex-col overflow-hidden rounded-2xl sm:rounded-[2rem] border [backface-visibility:hidden] bg-[#0a0a0a] border-white/10 shadow-[0_0_100px_rgba(0,0,0,0.5)]">
+      <BrowserBar url={project.link} />
+      <div className="relative min-h-0 flex-1">
+        <img
+          src={project.src}
+          alt={project.title}
+          className="absolute inset-0 w-full h-full object-cover opacity-90"
+          loading={index === 0 ? "eager" : "lazy"}
+          decoding="async"
+        />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 p-6 sm:p-10 flex flex-col gap-3 w-full">
+          <h3 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
+            {project.title}
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-sm sm:text-base font-medium text-white border border-white/20">
+                {tag}
+              </span>
+            ))}
           </div>
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`View ${project.title} site`}
+            className="mt-1 inline-flex w-fit items-center gap-2 self-start rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-brand-cyan sm:absolute sm:right-10 sm:bottom-10 sm:mt-0">
+            View Site
+            <ArrowUpRight size={16} aria-hidden="true" />
+          </a>
         </div>
       </div>
+    </motion.div>
+  );
+}
 
-      {/* Sticky Stage */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
-        <div className="relative h-full w-full">
+export default function ProjectsCarousel({ projects = projectsList }) {
+  const containerRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+  const smooth = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  const lastIndex = Math.max(0, projects.length - 1);
+  const rotateX = useTransform(smooth, [0, 1], [0, lastIndex * 180]);
+  const activeIndex = useTransform(smooth, [0, 1], [0, lastIndex]);
+
+  if (!projects || projects.length === 0) return null;
+
+  return (
+    // The heading sits outside the scroll scene, so the scene's scroll progress starts exactly
+    // where the first card does
+    <div id="projects" className="theme-section scroll-mt-24">
+      <div className="site-container pt-24 pb-10 md:pt-32 md:pb-14">
+        <SectionHeading eyebrow="Selected work" title="Projects we've" accent="built and launched" />
+      </div>
+
+      <section
+        aria-label="Projects"
+        ref={containerRef}
+        className="relative w-full"
+        style={{ height: `${Math.max(projects.length * 100, 100)}vh` }}>
+        <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center [perspective:1200px]">
           {projects.map((project, index) => (
-            <a
-              key={index}
-              ref={(el) => (itemsRef.current[index] = el)}
-              href={project.link}
-              target="_blank"
-              rel="noreferrer"
-              className="absolute rounded-lg shadow-2xl bg-surface-card/95 overflow-hidden cursor-pointer"
-              style={{
-                width: "clamp(150px, 30vw, 300px)",
-                height: "clamp(200px, 40vw, 400px)",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                transformOrigin: "0% 100%",
-                willChange: "transform"
-              }}
-            >
-              <div className="absolute inset-0">
-                <div className="absolute inset-0 bg-gradient-to-b from-brand-amethyst/45 to-brand-black/75 z-10" />
-                <img
-                  src={project.src}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-
-                <div className="absolute left-5 bottom-5 z-20 text-white text-[clamp(20px,3vw,30px)] font-bold">
-                  {project.title}
-                </div>
-
-                <div className="absolute left-5 top-3 z-20 text-white/60 text-[clamp(20px,10vw,80px)] font-bold">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-              </div>
-            </a>
+            <BackgroundText
+              key={`bg-${project.title}`}
+              index={index}
+              progress={activeIndex}
+              text={project.bgText}
+            />
           ))}
-        </div>
 
-      </div>
+          <motion.div
+            style={{ rotateX, transformStyle: "preserve-3d" }}
+            className="relative w-[90%] max-w-6xl aspect-[4/3] sm:aspect-[16/9]">
+            {projects.map((project, index) => (
+              <ProjectCard
+                key={`card-${project.title}`}
+                index={index}
+                progress={activeIndex}
+                project={project}
+              />
+            ))}
+          </motion.div>
+        </div>
+      </section>
     </div>
-  )
+  );
 }

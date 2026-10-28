@@ -6,19 +6,4 @@
     <priority>1.0</priority>
   </url>
 
-  <url>
-    <loc>https://devfarmer.in/projects</loc>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://devfarmer.in/about</loc>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://devfarmer.in/contact</loc>
-    <priority>0.7</priority>
-  </url>
-
 </urlset>
