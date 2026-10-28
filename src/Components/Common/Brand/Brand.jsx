@@ -3,7 +3,7 @@ import React from 'react'
 function Brand({ width = 150 }) {
   return (
     <div>
-      <img src="/brand.png" alt="brand" width={width}/>
+      <img src="/brand.png" alt="DevFarmer" width={width}/>
     </div>
   )
 }
